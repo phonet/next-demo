@@ -1,0 +1,109 @@
+@import "../../static/styles/icon";
+
+.category {
+  float: left;
+  height: 40px;
+  width: 160px;
+  background: #F33A3F;
+  background: -webkit-linear-gradient(90deg, red, #ff3264);
+  background: linear-gradient(90deg, red, #ff3264);
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  padding-left: 0;
+  overflow: visible;
+}
+
+.topLevel {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  width: 160px;
+  text-align: left;
+  border-bottom: 1px solid #ff5160;
+
+  .lineicon {
+	display: inline-block;
+	*zoom: 1;
+	*display: inline;
+	margin: 0 24px 0 15px;
+	width: 15px;
+	height: 12px;
+	overflow: hidden;
+
+	i {
+	  width: 15px;
+	  height: 0;
+	  border-top: 2px solid #ddd;
+	  display: block;
+	  margin-bottom: 3px;
+	}
+  }
+}
+
+.categoryList {
+  //background: linear-gradient(to right, #f00, #ff3264);
+  background: rgba(9, 7, 35, 0.8);
+  //height: 500px;
+
+  .categoryItem {
+	padding-left: 10px;
+	width: 160px;
+	height: 40px;
+	cursor: pointer;
+	text-align: left;
+	padding-right: 3px;
+	border-bottom: 1px solid rgba(243, 58, 63, 0.1);
+
+	&:last-child {
+	  border-bottom: none;
+	}
+
+	&:hover {
+	  background: #F33A3F;
+	  border-bottom: 1px solid #F33A3F;
+
+	  .subCategory {
+		display: block;
+	  }
+	}
+
+	.categoryIcon {
+	  display: inline-block;
+	  width: 16px;
+	  height: 16px;
+	  vertical-align: middle;
+	  margin-right: 24px;
+	}
+
+	.categoryName {
+	  display: inline-block;
+	  width: 80px;
+	}
+
+	.iconArrow {
+	  display: inline-block;
+	  .iconArrowR()
+	}
+  }
+}
+
+
+.subCategory {
+  transition: height .4s;
+  position: absolute;
+  z-index: 75;
+  top: 40px;
+  left: 160px;
+  width: 900px;
+  overflow: hidden;
+  max-height: 348px;
+  height: 348px;
+  background: #fff;
+  border: 1px solid #F33A3F;
+  border-left-width: 0;
+  text-align: left;
+  color: #333;
+  cursor: auto;
+  display: none;
+}

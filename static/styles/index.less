@@ -1,0 +1,54 @@
+.searchWrap {
+  display: flex;
+  align-items: center;
+  margin: 24px auto;
+
+  .searchArea {
+	margin: 0 auto;
+  }
+}
+
+.topTab {
+  height: 40px;
+  position: relative;
+  line-height: 40px;
+  z-index: 102;
+
+  .funcTab {
+	z-index: 72;
+	float: left;
+	padding-left: 25px;
+	height: 40px;
+	position: relative;
+
+	li {
+	  float: left;
+	  height: 40px;
+	  overflow: hidden;
+	  padding: 0 20px;
+
+	  a {
+		display: block;
+		text-align: center;
+		font-size: 15px;
+		font-weight: 700;
+		color: #333;
+
+		&:link, &:visited {
+		  color: #333;
+		  text-decoration: none;
+		}
+
+		&:hover {
+		  background: #fff;
+		  color: #ff1e32;
+		}
+	  }
+	}
+  }
+}
+
+.homeContent {
+  background: #f8f8f8;
+  padding: 40px 0 0;
+}
