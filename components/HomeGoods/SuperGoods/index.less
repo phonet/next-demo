@@ -7,7 +7,7 @@
   top: 0;
   height: 500px;
   width: 100%;
-  background: #F33A3F;
+  background: @primary-color;
   background-image: url("/static/images/super_goods_bg.png");
   background-size: 691px 345px;
   background-repeat: no-repeat;
@@ -18,19 +18,27 @@
   z-index: 1;
   min-height: 520px;
   //background: #ffffff;
-  padding: 20px 17px 0;
+  padding: 20px 35px 0;
 
   .item {
 	float: left;
-	width: 247px;
-	height: 316px;
+	width: 240px;
+	height: 330px;
 	background: #ffffff;
-	padding: 12px;
+	//padding: 12px;
+
+	.googsImg {
+	  width: 240px;
+	  height: 240px;
+	}
+
+	.googsDesc {
+	  padding: 9px 10px 0;
+	}
 
 	.goodsName {
 	  font-size: 16px;
 	  color: #333;
-	  margin-top: 40px;
 	}
 
 	> a {

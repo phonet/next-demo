@@ -1,0 +1,14 @@
+.ellipBlock(@height:52px,@lineClamp:3) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: @lineClamp;
+  /* degradation */
+  height: @height;
+  overflow: hidden;
+}
+
+.break() {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

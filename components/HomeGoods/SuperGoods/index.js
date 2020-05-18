@@ -10,6 +10,7 @@ import styles from './index.less';
  * @constructor
  */
 const SuperGoods = () => {
+	const test = new Array(9).fill(1);
 	return (
 		<div className={`${styles.superGoods} contentWidth mb40`}>
 			<ul className={`${styles.superGoodsList} fcb`}>
@@ -19,132 +20,31 @@ const SuperGoods = () => {
 					<i/>
 					<h3>全球多款品质好货</h3>
 				</li>
-				<li className={`${styles.item}`}>
-					<a href='#'>
-						<img src="../static/images/test/hot1.png" alt=""
-							 width={'222px'} height={'168px'}
-						/>
-						<p className={`${styles.goodsName} break`}
-						   title={'Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本'}>Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本</p>
-						<Progress percent={70} status="exception" showInfo={false}
-								  strokeColor={'#F33A3F'}
-								  trailColor={'#EAEAEA'}
-						/>
-						<PriceShow/>
-					</a>
-				</li>
-				<li className={`${styles.item}`}>
-					<a href='#'>
-						<img src="../static/images/test/hot1.png" alt=""
-							 width={'222px'} height={'168px'}
-						/>
-						<p className={`${styles.goodsName} break`}
-						   title={'Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本'}>Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本</p>
-						<Progress percent={70} status="exception" showInfo={false}
-								  strokeColor={'#F33A3F'}
-								  trailColor={'#EAEAEA'}
-						/>
-						<PriceShow/>
-					</a>
-				</li>
-				<li className={`${styles.item}`}>
-					<a href='#'>
-						<img src="../static/images/test/hot1.png" alt=""
-							 width={'222px'} height={'168px'}
-						/>
-						<p className={`${styles.goodsName} break`}
-						   title={'Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本'}>Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本</p>
-						<Progress percent={70} status="exception" showInfo={false}
-								  strokeColor={'#F33A3F'}
-								  trailColor={'#EAEAEA'}
-						/>
-						<PriceShow/>
-					</a>
-				</li>
-				<li className={`${styles.item}`}>
-					<a href='#'>
-						<img src="../static/images/test/hot1.png" alt=""
-							 width={'222px'} height={'168px'}
-						/>
-						<p className={`${styles.goodsName} break`}
-						   title={'Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本'}>Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本</p>
-						<Progress percent={70} status="exception" showInfo={false}
-								  strokeColor={'#F33A3F'}
-								  trailColor={'#EAEAEA'}
-						/>
-						<PriceShow/>
-					</a>
-				</li>
-				<li className={`${styles.item}`}>
-					<a href='#'>
-						<img src="../static/images/test/hot1.png" alt=""
-							 width={'222px'} height={'168px'}
-						/>
-						<p className={`${styles.goodsName} break`}
-						   title={'Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本'}>Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本</p>
-						<Progress percent={70} status="exception" showInfo={false}
-								  strokeColor={'#F33A3F'}
-								  trailColor={'#EAEAEA'}
-						/>
-						<PriceShow/>
-					</a>
-				</li>
-				<li className={`${styles.item}`}>
-					<a href='#'>
-						<img src="../static/images/test/hot1.png" alt=""
-							 width={'222px'} height={'168px'}
-						/>
-						<p className={`${styles.goodsName} break`}
-						   title={'Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本'}>Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本</p>
-						<Progress percent={70} status="exception" showInfo={false}
-								  strokeColor={'#F33A3F'}
-								  trailColor={'#EAEAEA'}
-						/>
-						<PriceShow/>
-					</a>
-				</li>
-				<li className={`${styles.item}`}>
-					<a href='#'>
-						<img src="../static/images/test/hot1.png" alt=""
-							 width={'222px'} height={'168px'}
-						/>
-						<p className={`${styles.goodsName} break`}
-						   title={'Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本'}>Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本</p>
-						<Progress percent={70} status="exception" showInfo={false}
-								  strokeColor={'#F33A3F'}
-								  trailColor={'#EAEAEA'}
-						/>
-						<PriceShow/>
-					</a>
-				</li>
-				<li className={`${styles.item}`}>
-					<a href='#'>
-						<img src="../static/images/test/hot1.png" alt=""
-							 width={'222px'} height={'168px'}
-						/>
-						<p className={`${styles.goodsName} break`}
-						   title={'Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本'}>Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本</p>
-						<Progress percent={70} status="exception" showInfo={false}
-								  strokeColor={'#F33A3F'}
-								  trailColor={'#EAEAEA'}
-						/>
-						<PriceShow/>
-					</a>
-				</li>
-				<li className={`${styles.item}`}>
-					<a href='#'>
-						<img src="../static/images/test/hot1.png" alt=""
-							 width={'222px'} height={'168px'}
-						/>
-						<p className={`${styles.goodsName} break`}
-						   title={'Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本'}>Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本</p>
-						<Progress percent={70} status="exception" showInfo={false}
-								  strokeColor={'#F33A3F'}
-								  trailColor={'#EAEAEA'}
-						/>
-						<PriceShow/>
-					</a>
-				</li>
+				{
+					test.map((o, i) => {
+						return (
+							<li className={`${styles.item}`}
+								key={i}
+							>
+								<a href='#'>
+									<img src="../static/images/test/hot1.png" alt=""
+										 className={styles.googsImg}
+									/>
+									<div className={styles.googsDesc}>
+										<p className={`${styles.goodsName} break`}
+										   title={'Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo 雪花秀 滋盈肌本'}>Sulwhasoo 雪花秀 滋盈肌本Sulwhasoo
+											雪花秀 滋盈肌本</p>
+										<Progress percent={70} status="exception" showInfo={false}
+												  strokeColor={'#F33A3F'}
+												  trailColor={'#EAEAEA'}
+										/>
+										<PriceShow/>
+									</div>
+								</a>
+							</li>
+						);
+					})
+				}
 			</ul>
 			<div className={`${styles.superGoodsBg}`}/>
 		</div>

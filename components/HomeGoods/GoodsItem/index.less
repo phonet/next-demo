@@ -1,0 +1,46 @@
+@import url(../../../static/styles/common);
+
+.goodsItem {
+  float: left;
+  width: 236px;
+  height: 310px;
+  background: #fff;
+  margin-right: 8px;
+
+  .goodsImg {
+	width: 236px;
+	height: 236px;
+	object-fit: cover;
+  }
+
+  .goodsDesc {
+	padding: 10px;
+  }
+
+  .goodsName {
+	color: #333333;
+	font-size: 14px;
+	.break();
+  }
+
+  .priceWrap {
+	margin-top: 5px
+  }
+
+  .nowPrice {
+	font-size: 20px;
+	color: @red;
+  }
+
+  .marketPrice {
+	height: 14px;
+	margin-left: 15px;
+	font-size: 14px;
+	text-decoration: line-through;
+	color: #999999;
+  }
+
+  &:last-child {
+	margin-right: 0 !important;
+  }
+}

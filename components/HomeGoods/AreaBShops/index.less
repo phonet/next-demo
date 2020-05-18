@@ -1,0 +1,53 @@
+@import "../../../static/styles/common";
+
+.item {
+  width: 247px;
+  height: 316px;
+  float: left;
+  background: #ffffff;
+  margin-left: 2px;
+  text-align: center;
+
+  > a {
+	display: block;
+	width: 100%;
+	height: 100%;
+  }
+
+  &:first-child {
+	width: 273px;
+	margin-left: 0;
+
+	img {
+	  width: 273px;
+	  height: 100%;
+	}
+  }
+
+  .tag {
+	width: 120px;
+	height: 30px;
+	border-bottom-right-radius: 15px;
+	border-top-right-radius: 15px;
+	color: #ffffff;
+	font-size: 16px;
+	background: @primary-color;
+	opacity: 0.5;
+	text-align: center;
+	margin-top: 10px;
+  }
+
+  .brandLogo {
+	width: 164px;
+	height: 60px;
+	object-fit: cover;
+	margin-top: 90px;
+  }
+
+  .brandName {
+	padding: 0 20px;
+	margin-top: 60px;
+	font-size: 18px;
+	.ellipBlock(50px, 2)
+  }
+}

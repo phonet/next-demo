@@ -4,9 +4,7 @@
   float: left;
   height: 40px;
   width: 160px;
-  background: #F33A3F;
-  background: -webkit-linear-gradient(90deg, red, #ff3264);
-  background: linear-gradient(90deg, red, #ff3264);
+  background: @primary-color;
   color: #fff;
   font-size: 14px;
   text-align: center;
@@ -20,7 +18,7 @@
   line-height: 40px;
   width: 160px;
   text-align: left;
-  border-bottom: 1px solid #ff5160;
+  border-bottom: 1px solid @primary-color;
 
   .lineicon {
 	display: inline-block;
@@ -53,15 +51,15 @@
 	cursor: pointer;
 	text-align: left;
 	padding-right: 3px;
-	border-bottom: 1px solid rgba(243, 58, 63, 0.1);
+	border-bottom: 1px solid rgba(0, 125, 198, 0.1);
 
 	&:last-child {
 	  border-bottom: none;
 	}
 
 	&:hover {
-	  background: #F33A3F;
-	  border-bottom: 1px solid #F33A3F;
+	  background: @primary-color;
+	  border-bottom: 1px solid @primary-color;
 
 	  .subCategory {
 		display: block;
@@ -100,7 +98,7 @@
   max-height: 348px;
   height: 348px;
   background: #fff;
-  border: 1px solid #F33A3F;
+  border: 1px solid @primary-color;
   border-left-width: 0;
   text-align: left;
   color: #333;

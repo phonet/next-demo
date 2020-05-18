@@ -2,12 +2,12 @@ import React from 'react';
 import styles from './index.less';
 
 /**
- * 热卖品牌
+ * 热卖品牌(A区广告)
  * 2020/5/18 1:15 上午 BY TF
  * @returns {*}
  * @constructor
  */
-const HotGoods = () => {
+const AreaAGoods = () => {
 	return (
 		<ul className={'mb40 fcb'}>
 			<li className={`${styles.hotItem}`}>
@@ -35,4 +35,4 @@ const HotGoods = () => {
 	);
 };
 
-export default HotGoods;
+export default AreaAGoods;
