@@ -10,6 +10,14 @@
   text-align: center;
   padding-left: 0;
   overflow: visible;
+
+  &.hoverCategory {
+	&:hover {
+	  .hideCategory {
+		display: block;
+	  }
+	}
+  }
 }
 
 .topLevel {
@@ -42,6 +50,11 @@
 .categoryList {
   //background: linear-gradient(to right, #f00, #ff3264);
   background: rgba(9, 7, 35, 0.8);
+
+  &.hideCategory {
+	display: none;
+  }
+
   //height: 500px;
 
   .categoryItem {
@@ -68,10 +81,18 @@
 
 	.categoryIcon {
 	  display: inline-block;
-	  width: 16px;
-	  height: 16px;
+	  width: 18px;
+	  height: 18px;
 	  vertical-align: middle;
-	  margin-right: 24px;
+	  margin: 0 24px 0 5px;
+
+	  &.categoryCos {
+		background: url("/static/images/category_cos.png") no-repeat center;
+	  }
+
+	  &.categoryMotherBaby {
+		background: url("/static/images/category_mother_baby.png") no-repeat center;
+	  }
 	}
 
 	.categoryName {

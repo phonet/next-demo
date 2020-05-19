@@ -1,0 +1,73 @@
+import {Breadcrumb, Menu, Select} from 'antd';
+import React from 'react';
+import styles from './index.less';
+
+/**
+ * 带导航的面包屑
+ * 2020/5/20 1:37 上午 BY TF
+ * @returns {*}
+ * @constructor
+ */
+const BreadcrumbNav = () => {
+
+	const menu = (
+		<Menu>
+			<Menu.Item>
+				<a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+					General
+				</a>
+			</Menu.Item>
+			<Menu.Item>
+				<a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
+					Layout
+				</a>
+			</Menu.Item>
+			<Menu.Item>
+				<a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
+					Navigation
+				</a>
+			</Menu.Item>
+		</Menu>
+	);
+
+	return (
+		<div className={`${styles.navCrumbWrap} contentWidth`}>
+			<Breadcrumb separator={'>'}>
+				<Breadcrumb.Item>
+					<a href="">首页</a>
+				</Breadcrumb.Item>
+				<Breadcrumb.Item>
+					<Select size={'small'} className={styles.navSelect} value={'lucy'}>
+						<Select.Option value="lucy">水乳1</Select.Option>
+						<Select.Option value="lucy11">水乳2</Select.Option>
+						<Select.Option value="lucy11sd">水乳3</Select.Option>
+					</Select>
+				</Breadcrumb.Item>
+				<Breadcrumb.Item>
+					<Select size={'small'} className={styles.navSelect} value={'lucy'}>
+						<Select.Option value="lucy">水乳1</Select.Option>
+						<Select.Option value="lucy11">水乳2</Select.Option>
+						<Select.Option value="lucy11sd">水乳3</Select.Option>
+					</Select>
+				</Breadcrumb.Item>
+				<Breadcrumb.Item>
+					<Select size={'small'} className={styles.navSelect} value={'lucy'}>
+						<Select.Option value="lucy">面霜1</Select.Option>
+						<Select.Option value="lucy11">面霜2</Select.Option>
+						<Select.Option value="lucy11sd">面霜3</Select.Option>
+					</Select>
+				</Breadcrumb.Item>
+			</Breadcrumb>
+		</div>
+	);
+
+	/*return (
+		<div className={`${styles.navCrumbWrap} contentWidth fcb`}>
+			<a className={styles.item} href="">首页</a>
+			<span className={styles.arrow}>></span>
+
+		</div>
+	);*/
+};
+
+export default BreadcrumbNav;

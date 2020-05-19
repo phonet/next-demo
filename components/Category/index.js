@@ -7,9 +7,11 @@ import SubCategory from './SubCategory.js';
  * @returns {*}
  * @constructor
  */
-const Category = () => {
+const Category = ({
+					  hoverShow = false
+				  }) => {
 	return (
-		<div className={styles.category}>
+		<div className={`${styles.category} ${hoverShow?styles.hoverCategory:''}`}>
 			<div className={`${styles.topLevel}`}>
 				<div className={styles.lineicon}>
 					<i/>
@@ -18,9 +20,9 @@ const Category = () => {
 				</div>
 				<span>所有分类</span>
 			</div>
-			<ul className={styles.categoryList}>
+			<ul className={`${styles.categoryList} ${hoverShow ? styles.hideCategory : ''}`}>
 				<li className={styles.categoryItem}>
-					<i className={`${styles.categoryIcon}`}/>
+					<i className={`${styles.categoryIcon} ${styles.categoryCos}`}/>
 					<span className={styles.categoryName}>美容彩妆</span>
 					<i className={styles.iconArrow}/>
 					<div className={`${styles.subCategory}`}>
@@ -28,7 +30,7 @@ const Category = () => {
 					</div>
 				</li>
 				<li className={styles.categoryItem}>
-					<i className={`${styles.categoryIcon}`}/>
+					<i className={`${styles.categoryIcon} ${styles.categoryMotherBaby}`}/>
 					<span className={styles.categoryName}>母婴儿童</span>
 					<i className={styles.iconArrow}/>
 					<div className={`${styles.subCategory}`}>
@@ -36,7 +38,7 @@ const Category = () => {
 					</div>
 				</li>
 				<li className={styles.categoryItem}>
-					<i className={`${styles.categoryIcon}`}/>
+					<i className={`${styles.categoryIcon} ${styles.categoryMotherBaby}`}/>
 					<span className={styles.categoryName}>母婴儿童</span>
 					<i className={styles.iconArrow}/>
 					<div className={`${styles.subCategory}`}>
@@ -44,7 +46,7 @@ const Category = () => {
 					</div>
 				</li>
 				<li className={styles.categoryItem}>
-					<i className={`${styles.categoryIcon}`}/>
+					<i className={`${styles.categoryIcon} ${styles.categoryMotherBaby}`}/>
 					<span className={styles.categoryName}>母婴儿童</span>
 					<i className={styles.iconArrow}/>
 					<div className={`${styles.subCategory}`}>
@@ -52,7 +54,7 @@ const Category = () => {
 					</div>
 				</li>
 				<li className={styles.categoryItem}>
-					<i className={`${styles.categoryIcon}`}/>
+					<i className={`${styles.categoryIcon} ${styles.categoryMotherBaby}`}/>
 					<span className={styles.categoryName}>母婴儿童</span>
 					<i className={styles.iconArrow}/>
 					<div className={`${styles.subCategory}`}>
@@ -60,7 +62,23 @@ const Category = () => {
 					</div>
 				</li>
 				<li className={styles.categoryItem}>
-					<i className={`${styles.categoryIcon}`}/>
+					<i className={`${styles.categoryIcon} ${styles.categoryMotherBaby}`}/>
+					<span className={styles.categoryName}>母婴儿童</span>
+					<i className={styles.iconArrow}/>
+					<div className={`${styles.subCategory}`}>
+						<SubCategory/>
+					</div>
+				</li>
+				<li className={styles.categoryItem}>
+					<i className={`${styles.categoryIcon} ${styles.categoryMotherBaby}`}/>
+					<span className={styles.categoryName}>母婴儿童</span>
+					<i className={styles.iconArrow}/>
+					<div className={`${styles.subCategory}`}>
+						<SubCategory/>
+					</div>
+				</li>
+				<li className={styles.categoryItem}>
+					<i className={`${styles.categoryIcon} ${styles.categoryMotherBaby}`}/>
 					<span className={styles.categoryName}>母婴儿童</span>
 					<i className={styles.iconArrow}/>
 					<div className={`${styles.subCategory}`}>
