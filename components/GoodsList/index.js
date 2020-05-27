@@ -1,4 +1,6 @@
 import React from 'react';
+import styles from './index.less'
+import GoodsItem from "../GoodsItem";
 
 /**
  * 商品列表
@@ -7,11 +9,18 @@ import React from 'react';
  * @constructor
  */
 const GoodsList = () => {
-	return (
-		<div>
-			商品列表
-		</div>
-	);
+    const testArr = new Array(40).fill(1)
+    return (
+        <div className={`${styles.listWrap} contentWidth fcb`}>
+            {
+                testArr.map((o, i) => {
+                    return (
+                        <GoodsItem key={i}/>
+                    )
+                })
+            }
+        </div>
+    );
 };
 
 export default GoodsList;
