@@ -31,8 +31,10 @@ const BreadcrumbNav = () => {
 	);
 
 	return (
-		<div className={`${styles.navCrumbWrap} contentWidth`}>
-			<Breadcrumb separator={'>'}>
+		<div className={`${styles.navCrumbWrap} contentWidth fcb`}>
+			<Breadcrumb separator={'>'}
+						className={styles.left}
+			>
 				<Breadcrumb.Item>
 					<a href="">首页</a>
 				</Breadcrumb.Item>
@@ -58,6 +60,9 @@ const BreadcrumbNav = () => {
 					</Select>
 				</Breadcrumb.Item>
 			</Breadcrumb>
+			<div className={styles.right}>
+				共<span className={styles.totalGoods}>25555</span>个商品
+			</div>
 		</div>
 	);
 

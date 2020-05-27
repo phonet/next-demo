@@ -1,5 +1,8 @@
 import React from 'react';
+import BrandNav from '../components/BrandNav/index.js';
 import BreadcrumbNav from '../components/BreadcrumbNav';
+import FilterBar from '../components/FilterBar/index.js';
+import GoodsList from '../components/GoodsList/index.js';
 import HtmlHead from '../components/HtmlHead';
 import SearchArea from '../components/SearchArea';
 import TopNav from '../components/TopNav';
@@ -10,15 +13,18 @@ import TopNav from '../components/TopNav';
  * @returns {*}
  * @constructor
  */
-const GoodsList = () => {
+const CategoryGoodsList = () => {
 	return (
 		<>
 			<HtmlHead title={'商品列表'}/>
 			<SearchArea/>
 			<TopNav hoverShow={true}/>
 			<BreadcrumbNav/>
+			<BrandNav/>
+			<FilterBar/>
+			<GoodsList/>
 		</>
 	);
 };
 
-export default GoodsList;
+export default CategoryGoodsList;
