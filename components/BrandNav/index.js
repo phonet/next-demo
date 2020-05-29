@@ -18,6 +18,7 @@ const BrandNav = () => {
 						testArr.map((o, i) => {
 							return (
 								<a title="美赞臣"
+								   key={i}
 								   className={styles.item}
 								   href="#">美赞臣</a>
 							);
