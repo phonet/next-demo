@@ -8,14 +8,15 @@ import React from 'react';
  * @constructor
  */
 const HtmlHead = ({
-					  title = '标题'
-				  }) => {
-	return (
-		<Head>
-			<title>{title}</title>
-			<link rel="icon" href="/favicon.ico"/>
-		</Head>
-	);
+                      title = '标题',
+                      bodyBgColor = '#f8f8f8'
+                  }) => {
+    return (
+        <Head>
+            <title>{title}</title>
+            <link rel="icon" href="/favicon.ico"/>
+        </Head>
+    );
 };
 
 export default HtmlHead;

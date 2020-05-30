@@ -13,9 +13,9 @@ const GoodsImgPrev = () => {
     const [topPosition, setTopPosition] = useState(0);
     const [current, setCurrent] = useState({index: 0, url: `../../../static/images/test/goods1.jpg`})
 
-      const didMount = useEffect(() => {
-          ImageScale()
-      }, [])
+    const didMount = useEffect(() => {
+        ImageScale()
+    }, [])
 
     const onClickPrevBtn = useCallback((direction) => {
         console.log(direction)
@@ -69,12 +69,18 @@ const GoodsImgPrev = () => {
                     onClickPrevBtn('down');
                 }}><DownOutlined/></a>
             </div>
-            <div className={`${styles.imgWrap}`} id={'small'}>
-                <img src={current.url} alt=""/>
-                <div className={`${styles.mask} mask`}></div>
-            </div>
-            <div id="large" className={styles.large}>
-                <img src={current.url} />
+            <div className={`${styles.imgBox}`} id={'box'}>
+                <div className={`${styles.small}`} style={{backgroundImage: `url(${current.url})`}} id={'small'}>
+                    <div className={`${styles.mask} hide`} id={'mask'}/>
+                </div>
+                <div className={`${styles.big} hide`} id={'big'}>
+                    <img src={current.url} className={styles.bigImg}/>
+                </div>
+                <div className={`hide`} id={'local'}>
+                    <p className="title">鼠标在图片中的坐标为: </p>
+                    <p> x : <span></span></p>
+                    <p> y : <span></span></p>
+                </div>
             </div>
         </div>
     )

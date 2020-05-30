@@ -1,67 +1,122 @@
+export function show(ele) {
+    ele.classList.add("show");
+    ele.classList.remove("hide");
+}
+
+export function hide(ele) {
+    ele.classList.add("hide");
+    ele.classList.remove("show");
+}
+
+// 开始封装自己的scrollTop
+export function myScroll() {
+    if (window.pageYOffset != null) { // ie9+ 高版本浏览器
+        // 因为 window.pageYOffset 默认的是  0  所以这里需要判断
+        return {
+            left: window.pageXOffset,
+            top: window.pageYOffset
+        }
+    } else if (document.compatMode === "CSS1Compat") { // 标准浏览器   来判断有没有声明DTD
+        return {
+            left: document.documentElement.scrollLeft,
+            top: document.documentElement.scrollTop
+        }
+    }
+    return { // 未声明 DTD
+        left: document.body.scrollLeft,
+        top: document.body.scrollTop
+    }
+}
+
+
 export default function ImageScale() {
-    let small = document.getElementById("small");
-    let mask = document.querySelector("#small .mask");
-    let large = document.getElementById("large");
-    let largeImg = document.querySelector("#large img");
+    // 放大器组件 当鼠标放到左边的图片上, 右边生成局部放大图片
+    // 技术点：onmouseenter==onmouseover 第一个不冒泡
+    //技术点：onmouseleave==onmouseout  第一个不冒泡
+    //步骤：
+    // 1. 鼠标放上去显示盒子，移开隐藏盒子
+    // 2. mouseover盒子跟随移动
+    // 3. 右侧的大图片，等比例移动
 
-    //缩略图添加鼠标移入事件，鼠标移入后，让遮罩层和大图显示
-    small.onmouseover = function() {
-        mask.style.display = 'block';
-        large.style.display = 'block';
-    }
+    // 获取相关元素
+    let box = document.querySelector("#box");
+    let small = document.querySelector("#box #small");
+    let big = document.querySelector("#box #big");
+    let mask = document.querySelector("#mask");
+    let bigImg = document.querySelector("#big img");
 
-    //鼠标在缩略图上移动的时候，让遮罩层跟着鼠标走
-    small.onmousemove = function(e) {
-        //声明变量l,t存储遮罩层mask的left和top
+    // 作用: 显示鼠标在盒子中的坐标。
+    // onmousemove:在事件源上移动便会触发
+    // 1. 获取鼠标在整个页面的位置
+    // 2. 获取盒子在整个页面的位置
+    // 3. 用鼠标的位置减去盒子的位置赋值给盒子的内容。
+    let contentX = document.querySelectorAll("#local span")[0];
+    let contentY = document.querySelectorAll("#local span")[1];
 
-        let l = e.clientX - mask.offsetWidth / 2 - small.offsetLeft;
-        let t = e.clientY - mask.offsetHeight / 2 - small.offsetTop;
+    small.onmousemove = function (event) {
+        event = event || window.event;
+        // 获取鼠标在页面中的位置
+        let pageX = event.pageX || myScroll().left + event.clientX;
+        let pageY = event.pageY || myScroll().top + event.clientY;
+        //console.log(pageX, pageY);
+        // 获取图片左上角在页面中的位置
+        let imgX = box.getBoundingClientRect().left;//box.offsetLeft;
+        let imgY = box.getBoundingClientRect().top;//box.offsetTop;
+        console.log(imgX, imgY)
+        let x = pageX - imgX;
+        let y = pageY - imgY;
+        contentX.innerHTML = x;
+        contentY.innerHTML = y;
 
-        //处理遮罩层的位置：
-        //限制遮罩层在X轴上的移动范围
-        if(l < 0) {
-            //遮罩层是相对于父级定位的，如果left小于0代表已经超出父级的左边，赋值为0
-            l = 0;
-        } else if(l > small.offsetWidth - mask.offsetWidth) {
-            //遮罩层在X轴上能够走的最大的距离是父级的宽度减去自己的宽度
-            l = small.offsetWidth - mask.offsetWidth;
+        // 想移动mask, 必须知道鼠标在small中的位置.
+        // local.js 引入contentX & contentY 为鼠标在盒子中的位置
+        // 让鼠标在黄盒子最中间，减去黄盒子宽高的一半
+        let maskX = x - mask.offsetWidth / 2;
+        let maskY = y - mask.offsetHeight / 2;
+        //console.log(maskX, maskY)
+        //限制换盒子范围
+        //left取值为大于0，小盒子的宽 - mask的宽。
+        if (maskX < 0) {
+            maskX = 0;
+        }
+        if (maskX > small.offsetWidth - mask.offsetWidth) {
+            maskX = small.offsetWidth - mask.offsetWidth;
+        }
+        if (maskY < 0) {
+            maskY = 0;
+        }
+        if (maskY > small.offsetHeight - mask.offsetHeight) {
+            maskY = small.offsetHeight - mask.offsetHeight;
         }
 
-        //限制遮罩层在Y轴上的移动范围
-        if(t < 0) {
-            t = 0;
-        } else if(t > small.offsetHeight - mask.offsetHeight) {
-            t = small.offsetHeight - mask.offsetHeight;
-        }
+        //移动mask
+        mask.style.left = maskX + "px";
+        mask.style.top = maskY + "px";
+        // console.log(maskX, maskY);
 
-        //处理大图显示的位置：
-        /*
-         * l											现在走的距离
-         * small.offsetWidth-mask.offsetWidth			总距离
-         *
-         * 比例＝l/(small.offsetWidth-mask.offsetWidth)
-         */
-        let scaleX = l / (small.offsetWidth - mask.offsetWidth);
-        let scaleY = t / (small.offsetHeight - mask.offsetHeight);
+        // 右侧的大图片, 等比例移动。
+        // 大图片走的距离 / mask走的距离 = 大图片/小图片
+        let ratio = bigImg.offsetWidth / small.offsetWidth;
 
-        /*
-         * 已知右侧图片最大的移动距离（总距离）、比例
-         *
-         * 比例＝走的距离/总距离;
-         * 走的距离=比例*总距离;
-         */
+        let rimgX = ratio * maskX;
+        let rimgY = ratio * maskY;
 
-        largeImg.style.left = -scaleX * (largeImg.offsetWidth - large.offsetWidth) + 'px';
-        largeImg.style.top = -scaleY * (largeImg.offsetHeight - large.offsetHeight) + 'px';
-
-        mask.style.left = l + 'px';
-        mask.style.top = t + 'px';
+        bigImg.style.marginTop = -rimgX + "px";
+        bigImg.style.marginLeft = -rimgY + "px";
     }
 
-    //缩略图添加鼠标移出事件，鼠标移出后，让遮罩层和大图不显示
-    small.onmouseout = function() {
-        mask.style.display = 'none';
-        large.style.display = 'none';
+    small.onmouseleave = function () {
+        contentX.innerHTML = "";
+        contentY.innerHTML = "";
     }
 
+    //小盒子绑定事件: 鼠标放上去显示盒子，移开隐藏盒子
+    small.onmouseenter = function () {
+        show(mask);
+        show(big);
+    }
+    small.onmouseleave = function () {
+        hide(mask);
+        hide(big);
+    }
 };

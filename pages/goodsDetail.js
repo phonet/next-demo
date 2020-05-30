@@ -4,6 +4,7 @@ import SearchArea from "../components/SearchArea";
 import BreadcrumbNav from "../components/BreadcrumbNav";
 import GoodsImgPrev from "../components/GoodsDetailPage/GoodsImgPrev";
 import GoodsInfo from "../components/GoodsDetailPage/GoodsInfo";
+import GoodsDetails from "../components/GoodsDetailPage/GoodsDetails";
 
 /**
  * 商品详情页面
@@ -15,10 +16,13 @@ const GoodsDetail = () => {
         <>
             <HtmlHead title={'商品详情'}/>
             <SearchArea/>
-            <BreadcrumbNav showTotal={false}/>
-            <div className={`fcb contentWidth`}>
-                <GoodsImgPrev/>
-                <GoodsInfo/>
+            <div className={`bw`}>
+                <BreadcrumbNav showTotal={false}/>
+                <div className={`fcb contentWidth`}>
+                    <GoodsImgPrev/>
+                    <GoodsInfo/>
+                </div>
+                <GoodsDetails/>
             </div>
         </>
     )

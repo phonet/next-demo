@@ -1,0 +1,117 @@
+@import url(../../../static/styles/common);
+
+.goodsDetailsWrap {
+  padding-bottom: 20px;
+}
+
+.otherRecommond {
+  width: 258px;
+  margin-right: 20px;
+}
+
+.otherStore {
+  width: 258px;
+  height: 161px;
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(221, 221, 221, 1);
+
+  .header {
+    display: inline-block;
+    width: 258px;
+    height: 41px;
+    line-height: 41px;
+    background: rgba(247, 245, 245, 1);
+    border-bottom: 1px solid rgba(221, 221, 221, 1);
+    text-align: center;
+    color: #333333;
+  }
+
+  .otherStoreOption {
+    text-align: center;
+    padding-top: 50px;
+
+    > a {
+      display: inline-block;
+      width: 80px;
+      height: 26px;
+      line-height: 26px;
+      background: rgba(247, 245, 245, 1);
+      border: 1px solid rgba(221, 221, 221, 1);
+      text-align: center;
+
+      &.go {
+        background: rgba(51, 51, 51, 1);
+        color: #ffffff;
+        margin-right: 20px;
+      }
+
+      &.action {
+        background: rgba(247, 245, 245, 1);
+        border: 1px solid rgba(221, 221, 221, 1);
+        color: #333333;
+      }
+    }
+  }
+}
+
+.otherGoods {
+  margin-top: 10px;
+  border: 1px solid #DDDDDD;
+
+  .header {
+    display: inline-block;
+    width: 258px;
+    height: 41px;
+    line-height: 41px;
+    text-align: center;
+    border-bottom: 1px solid rgba(221, 221, 221, 1);
+  }
+}
+
+.otherGoodsList {
+  padding: 10px;
+
+  .goodsItem {
+    width: 236px;
+
+    .goodsImg {
+      width: 236px;
+      height: 236px;
+      object-fit: cover;
+    }
+
+    .goodsDesc {
+      margin-top: 10px;
+    }
+
+    .goodsName {
+      color: #333333;
+      font-size: 14px;
+      .break();
+    }
+
+    .priceWrap {
+      margin-top: 5px
+    }
+
+    .nowPrice {
+      font-size: 20px;
+      color: @red;
+      font-weight: bold;
+    }
+
+    .marketPrice {
+      height: 14px;
+      margin-left: 15px;
+      font-size: 14px;
+      text-decoration: line-through;
+      color: #999999;
+    }
+
+  }
+
+}
+
+.detailContent {
+  min-height: 500px;
+}

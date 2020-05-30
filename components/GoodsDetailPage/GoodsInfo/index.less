@@ -1,6 +1,109 @@
 .goodsInfoWrap {
   margin-left: 24px;
-  height: 500px;
+  //min-height: 500px;
   width: 732px;
-  background: #c999;
+  //background: #c999;
+}
+
+.goodsName {
+  font-size: 18px;
+  color: @black;
+}
+
+.goodsDesc {
+  color: #666666;
+}
+
+.goodsPriceWrap {
+  background: #f8f8f8;
+  padding: 8px;
+
+  > p {
+    margin-bottom: 8px !important;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.title {
+  display: inline-block;
+  color: #999999;
+  width: 100px;
+}
+
+.nowPrice {
+  font-size: 20px;
+  color: @red;
+  font-weight: bold;
+}
+
+.marketPrice {
+  height: 14px;
+  margin-left: 15px;
+  font-size: 14px;
+  text-decoration: line-through;
+  color: #999999;
+}
+
+.skuWrap {
+  padding: 8px;
+  margin-top: 8px;
+
+  .skuList {
+    > li {
+      margin-top: 8px;
+
+      &:first-child {
+        margin-top: 0
+      }
+
+      .skuName {
+        display: inline-block;
+        font-size: 16px;
+        color: #333333;
+        padding: 8px;
+        border: 1px solid #DDDDDD;
+
+        &:hover, &.active {
+          border: 1px solid #007DC6;
+        }
+      }
+    }
+  }
+}
+
+.colorWrap {
+  padding: 8px;
+}
+
+.buyNum {
+  margin-top: 8px;
+  padding: 8px;
+}
+
+.buyBtnWrap {
+  margin: 20px 0;
+}
+
+.buyBtn {
+  display: inline-block;
+  width: 200px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 20px;
+
+  &.addCar {
+    background: #057AD5;
+    color: #ffffff;
+  }
+
+  &.buyNow {
+    background: rgba(244, 191, 3, 0.1);
+    border: 2px solid #F4BF03;
+    color: #F4BF03;
+    margin-right: 24px;
+  }
 }

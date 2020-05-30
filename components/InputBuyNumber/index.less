@@ -1,0 +1,36 @@
+.buyInputWrap {
+  display: inline-block;
+
+  .buyNumInput {
+    width: 100px;
+    text-align: center;
+
+    :global {
+      .ant-input:focus {
+        border: 1px solid #d9d9d9;
+        box-shadow: none;
+      }
+    }
+  }
+
+  :global {
+    .ant-input-group-addon {
+      padding: 0;
+    }
+  }
+
+  .numBtn {
+    display: inline-block;
+    height: 100%;
+    width: 26px;
+    text-align: center;
+
+    &.cut {
+      color: #DDDDDD;
+    }
+
+    &.add {
+      color: #333333;
+    }
+  }
+}
