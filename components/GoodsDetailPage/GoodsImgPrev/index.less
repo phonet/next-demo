@@ -11,7 +11,7 @@
   height: 424px;
   margin-right: 10px;
   overflow: hidden;
-  background: #999999;
+  //background: #999999;
 
   .prevBtn {
     display: inline-block;
@@ -41,7 +41,12 @@
     }
 
     &.disabled {
+      border: 1px solid #DDDDDD;
+      cursor: not-allowed;
 
+      > span {
+        color: #DDDDDD;
+      }
     }
   }
 
@@ -60,6 +65,7 @@
       .item {
         width: 78px;
         height: 78px;
+        border: 1px solid @primary-color;
 
         .thumImg, .alink {
           width: 100%;
@@ -75,10 +81,7 @@
         margin-bottom: 10px;
 
         &.active, &:hover {
-          .alink {
-            border: 3px solid @primary-color;
-            margin: 0;
-          }
+          border: 3px solid @primary-color;
         }
       }
 
@@ -89,8 +92,44 @@
 
 
 .imgWrap {
+  position: relative;
   float: left;
   width: 424px;
   height: 424px;
   background: #cccccc;
+  //margin-right: 10px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+.mask{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100px;
+  height: 100px;
+  cursor: move;
+  opacity: .5;
+  background: yellowgreen;
+}
+
+
+.large {
+  position: relative;
+  display: none;
+  float: left;
+  overflow: hidden;
+  width: 424px;
+  height: 424px;
+}
+
+.large img {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
