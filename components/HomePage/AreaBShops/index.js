@@ -20,7 +20,7 @@ const AreaBShops = () => {
 				test.map((o, i) => {
 					return (
 						<li className={styles.item} key={i}>
-							<a href="">
+							<a href="/storeDetail" target={'_blank'}>
 								<p className={styles.tag}>品牌官方授权</p>
 								<img src="../../../static/images/test/hot1.png" className={styles.brandLogo} alt=""/>
 								<p className={styles.brandName}>SWAROVSKI 施华洛世奇 旗舰店</p>

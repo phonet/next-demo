@@ -20,7 +20,7 @@ ul, li {
   list-style: none;
 }
 
-ol, ul, dl,p{
+ol, ul, dl, p {
   margin-bottom: 0 !important;
 }
 
@@ -44,48 +44,86 @@ input:focus {
 
 :global {
   .headerHeight {
-	height: 30px;
+    height: 30px;
   }
 
   .contentWidth {
-	width: 1270px;
-	margin: 0 auto;
+    width: 1270px;
+    margin: 0 auto;
   }
 
   .fcb:after {
-	visibility: hidden;
-	display: block;
-	font-size: 0;
-	content: " ";
-	clear: both;
-	height: 0;
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
   }
 
   .fl {
-	float: left;
+    float: left;
   }
 
   .fr {
-	float: right;
+    float: right;
   }
 
   .bw {
-	background: #ffffff;
+    background: #ffffff;
   }
 
   .mb40 {
-	margin-bottom: 40px !important;
+    margin-bottom: 40px !important;
   }
 
   .break {
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
+
   .hide {
     display: none;
   }
+
   .show {
     display: show;
+  }
+
+  .f16 {
+    font-size: 16px;
+  }
+
+  .f18 {
+    font-size: 18px;
+  }
+
+  .f20 {
+    font-size: 20px;
+  }
+
+  .fwb {
+    font-weight: bold;
+  }
+
+  .red {
+    color: @red
+  }
+
+  .color6 {
+    color: #666666;
+  }
+
+  .gary {
+    color: #999999;
+  }
+
+  .black {
+    color: @black;
+  }
+
+  .tr {
+    text-align: right;
   }
 }

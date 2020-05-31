@@ -1,0 +1,83 @@
+@import url(../../../static/styles/common);
+
+.title {
+  font-size: 16px;
+  color: #333333;
+  padding: 20px 0;
+}
+
+
+.goodsItem {
+  float: left;
+  width: 246px;
+  //height: 310px;
+  background: #fff;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  border:1px solid rgba(248,248,248,1);
+
+  .goodsImg {
+    width: 246px;
+    height: 246px;
+    object-fit: cover;
+  }
+
+  .goodsDesc {
+    padding: 10px;
+  }
+
+  .goodsName {
+    color: #333333;
+    font-size: 14px;
+    //.break();
+  }
+
+  .priceWrap {
+    margin-top: 5px
+  }
+
+  .nowPrice {
+    font-size: 20px;
+    color: @red;
+    font-weight: bold;
+  }
+
+  .marketPrice {
+    height: 14px;
+    margin-left: 15px;
+    font-size: 14px;
+    text-decoration: line-through;
+    color: #999999;
+  }
+
+  &:last-child, &:nth-child(5n + 5) {
+    margin-right: 0 !important;
+  }
+
+  .storeName {
+    height: 16px;
+    text-decoration: underline;
+    color: rgba(153, 153, 153, 1);
+    line-height: 18px;
+    margin: 4px 0;
+    .break();
+  }
+
+  .totalSaleWrap {
+    line-height: 28px;
+    margin-top: 7px;
+
+    .saleTotal {
+      color: @black;
+
+      .num {
+        color: @red;
+      }
+
+      .car {
+        display: inline-block;
+        font-size: 20px;
+      }
+    }
+  }
+}

@@ -9,7 +9,7 @@ import styles from './index.less';
  * @constructor
  */
 const BreadcrumbNav = ({
-                           showTotal = true
+                           showTotal = true,
                        }) => {
 
     const menu = (

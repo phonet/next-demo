@@ -1,0 +1,92 @@
+import React from "react";
+import styles from './index.less';
+
+/**
+ * 物流信息
+ * 2020/6/1 2:34 上午 BY TF
+ */
+const Logistics = () => {
+    return (
+        <>
+            <div className={styles.wrap}>
+                <div className={styles.header}>
+                    <span className={`black`}>物流信息</span>
+                </div>
+                <div className={styles.content}>
+                    <div><span className={styles.title}>物流公司：</span> 韵达快递</div>
+                    <div><span className={styles.title}>运单号码：</span> 4305347834631</div>
+                    <div className={`fcb`}>
+                        <span className={`${styles.title} fl`}>物流跟踪：</span>
+                        <div className={'fl'}>
+                            2020-05-08 12:25:25包裹正在等待揽收<br/>
+                            2020-05-08 16:05:22【金华市】韵达快递 浙江浦江县公司浦江服务部收件员 已揽件<br/>
+                            2020-05-08 16:15:20【金华市】浙江浦江县公司 已发出<br/>
+                            2020-05-08 18:18:41【金华市】快件已到达 浙江义乌分拨中心<br/>
+                            2020-05-08 18:22:35【金华市】浙江义乌分拨中心 已发出<br/>
+                            2020-05-10 01:37:24【成都市】快件已到达 四川成都分拨中心<br/>
+                            2020-05-10 03:39:33【成都市】四川成都分拨中心 已发出<br/>
+                            2020-05-10 13:35:02【成都市】四川成都郫县西区公司犀浦镇成都后花园分部派件员：黄杰 电话：18380259022 当前正在为您派件<br/>
+                            2020-05-10 14:29:46【成都市】四川成都郫县西区公司 已发出<br/>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className={styles.wrap}>
+                <div className={styles.header}>
+                    <span className={`black`}>订单信息</span>
+                </div>
+                <div className={styles.content}>
+                    <div><span className={styles.title}>收货地址： </span> 李明芝 135****1241 四川省 成都市 郫都区 犀浦镇 犀浦校园路111号傲城</div>
+                    <div><span className={styles.title}>创建时间：</span> 4305347834631</div>
+                    <div><span className={styles.title}>订单号：</span> 4305347834631</div>
+                    <div><span className={styles.title}>支付宝交易号：</span> 4305347834631</div>
+                    <div><span className={styles.title}>支付金额：</span> 4305347834631</div>
+                    <div><span className={styles.title}>支付时间：</span> 4305347834631</div>
+                </div>
+            </div>
+            <div className={styles.wrap}>
+                <div className={styles.header}>
+                    <span className={`${styles.goodsInfo} black`}>商品信息</span>
+                    <span className={`${styles.price} black`}>单价</span>
+                    <span className={`${styles.num} black`}>数量</span>
+                    <span className={`${styles.money} black`}>金额(元)</span>
+                </div>
+                <div className={`${styles.content}`}>
+                    <div className={`${styles.goodsItem} fcb`}>
+                        <img className={`${styles.goodsImg} fl`} src="/static/images/test/goods.jpg" alt=""/>
+                        <div className={`${styles.goodsName} fl`}>Freeplus芙丽芳丝保湿面霜40克 保湿补水紧致滋润面 霜日晚霜女男</div>
+                        <div className={`${styles.size} gary fl`}>
+                            <span>颜色：天蓝</span><br/>
+                            <span>尺码：S</span>
+                        </div>
+                        <div className={`${styles.goodsPrice} fl`}>￥120.00</div>
+                        <div className={`${styles.goodsNum} fl`}>1</div>
+                        <div className={`${styles.goodsMoney} fl`}>￥120.00</div>
+                    </div>
+                    <div className={`${styles.goodsItem} fcb`}>
+                        <img className={`${styles.goodsImg} fl`} src="/static/images/test/goods.jpg" alt=""/>
+                        <div className={`${styles.goodsName} fl`}>Freeplus芙丽芳丝保湿面霜40克 保湿补水紧致滋润面 霜日晚霜女男</div>
+                        <div className={`${styles.size} gary fl`}>
+                            <span>颜色：天蓝</span><br/>
+                            <span>尺码：S</span>
+                        </div>
+                        <div className={`${styles.goodsPrice} fl`}>￥120.00</div>
+                        <div className={`${styles.goodsNum} fl`}>1</div>
+                        <div className={`${styles.goodsMoney} fl`}>￥120.00</div>
+                    </div>
+                    <div className={`tr`}>
+                        <span className={`color6`}>运费：<span className={`f16 fwb black`}>￥5.00</span></span><br/>
+                        <span className={`color6`}>税费：<span className={`f16 fwb black`}>￥5.00</span></span>
+                    </div>
+                    <div className={`tr`}>
+                        <span className={`color6`}>合计：<span className={`f20 fwb red`}>￥245.00</span></span>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+
+export default Logistics;

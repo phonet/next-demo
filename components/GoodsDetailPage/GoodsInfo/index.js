@@ -59,7 +59,7 @@ const GoodsInfo = () => {
             </div>
             <div className={styles.buyBtnWrap}>
                 <a className={`${styles.buyBtn} ${styles.buyNow}`}>立即购买</a>
-                <a className={`${styles.buyBtn} ${styles.addCar}`}>加入购物车</a>
+                <a className={`${styles.buyBtn} ${styles.addCar}`} href={'/car'} target={'_blank'}>加入购物车</a>
             </div>
         </div>
     )

@@ -1,0 +1,72 @@
+.title {
+  padding: 15px 0;
+  color: #333333;
+  font-weight: bold;
+}
+
+.addressList {
+  .item {
+    display: inline-block;
+    position: relative;
+    width: 310px;
+    height: 170px;
+    background: rgba(255, 255, 255, 1);
+    border: 2px solid rgba(221, 221, 221, 1);
+    padding: 10px 15px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333333;
+
+    &.active {
+      border: 2px solid @primary-color;
+
+      &:after {
+        width: 28px;
+        height: 28px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        content: '';
+        background: url("/static/images/check.png") no-repeat center;
+      }
+    }
+
+    &:nth-child(4n + 4) {
+      margin-right: 0;
+    }
+
+    .nameWrap {
+      margin-bottom: 15px;
+    }
+
+    .name {
+      font-weight: bold;
+    }
+
+    .default, .modifyBtn {
+      color: #999999;
+    }
+
+    .modifyBtn {
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .address {
+      width: 250px;
+    }
+  }
+
+}
+
+.modifyAddrBtn {
+  display: inline-block;
+  width: 90px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(221, 221, 221, 1);
+  color: @black;
+}

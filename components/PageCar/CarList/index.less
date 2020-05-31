@@ -1,0 +1,150 @@
+.title {
+  padding: 20px 0;
+}
+
+.carListPage {
+  min-height: 300px;
+  padding-bottom: 32px;
+}
+
+
+.header {
+  height: 48px;
+  line-height: 48px;
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(221, 221, 221, 1);
+  padding: 0 15px;
+
+  > span {
+    display: inline-block;
+    float: left;
+    color: #333333;
+
+    &.check {
+      width: 200px;
+    }
+
+    &.goodsInfo {
+      width: 538px;
+    }
+
+    &.price {
+      width: 150px;
+      text-align: center;
+    }
+
+    &.num {
+      width: 150px;
+      text-align: center;
+    }
+
+    &.money {
+      width: 100px;
+      text-align: center;
+    }
+
+    &.action {
+      width: 100px;
+      text-align: center;
+    }
+  }
+}
+
+.storeName {
+  padding: 0 15px;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.goodsList {
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(221, 221, 221, 1);
+  margin-bottom: 20px !important;
+
+  .item {
+    padding: 15px;
+
+    .goodsImg {
+      width: 80px;
+      height: 80px;
+      margin: 0 15px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .goodsDesc {
+      width: 500px;
+      margin-right: 112px;
+      .name {
+        color: #333333;
+      }
+
+      .color {
+        color: #999999;
+      }
+    }
+
+    .goodsPrice {
+      color: #333333;
+      font-weight: bold;
+      width: 150px;
+      text-align: center;
+    }
+
+    .goodsNum{
+      width: 150px;
+      text-align: center;
+    }
+    .goodsSale{
+      color:@red;
+      width: 100px;
+      text-align: center;
+    }
+    .goodsAction{
+      width: 100px;
+      text-align: center;
+    }
+  }
+}
+
+.buyBottom{
+  height: 70px;
+  line-height: 70px;
+  padding: 0 0 15px 15px;
+  background: #EEEEEE;
+  .delAll{
+    display: inline-block;
+    margin-left: 48px;
+  }
+  .right{
+    height: 70px;
+    line-height: 40px;
+    .choseGoods{
+      color: #333333;
+      margin-right: 20px;
+    }
+    .choseRed{
+      font-size: 20px;
+      color: @red;
+      font-weight: bold;
+    }
+    .rate{
+      color: #999999;
+      line-height: 10px;
+      text-align: right;
+      margin-right: 20px;
+    }
+    .buyBtn{
+      display: inline-block;
+      width:180px;
+      height:70px;
+      line-height: 70px;
+      font-size: 20px;
+      background:rgba(5,122,213,1);
+      text-align: center;
+      color: #ffffff;
+    }
+  }
+}
