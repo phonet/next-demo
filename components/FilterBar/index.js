@@ -21,9 +21,9 @@ const FilterBar = () => {
 					<Radio.Button value="3">新品<ArrowDownOutlined/></Radio.Button>
 					<Radio.Button value="3">价格<SortAscendingOutlined/></Radio.Button>
 				</Button.Group>
-				<div className={`fl`}>
-					<Input className={styles.inputW} prefix="￥"/>
-					<Input className={styles.inputW} prefix="￥"/>
+				<div className={`fl ${styles.inputW}`}>
+					<Input prefix="￥"/>
+					<Input prefix="￥"/>
 				</div>
 			</div>
 			<div className={`fr`}>

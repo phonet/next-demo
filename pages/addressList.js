@@ -1,5 +1,4 @@
 import React from "react";
-import styles from './index.less';
 
 /**
  * 收货地址

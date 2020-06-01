@@ -40,9 +40,9 @@ const Header = () => {
             <ul className={`${styles.headerInner} contentWidth`}>
                 <li>
                     <span className={styles.welcomeMsg}>跨境电商欢迎你</span>
-                    <a href={''}>登陆</a>
+                    <a href={'/user/login'}>登陆</a>
                     <span className={styles.line}>|</span>
-                    <a href={''}>注册</a>
+                    <a href={'/user/register'}>注册</a>
                 </li>
                 <li>
                     <a href="/myOrder" target={'_blank'} className={styles.buyItem}>我的订单</a>

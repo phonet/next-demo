@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './index.less';
+import LoginForm from "../../components/User/LoginForm";
 
 /**
  * 登录
@@ -7,7 +7,7 @@ import styles from './index.less';
  */
 const Login = () => {
     return (
-        <p>登录</p>
+        <LoginForm/>
     )
 }
 

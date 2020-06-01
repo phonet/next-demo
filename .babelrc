@@ -3,6 +3,8 @@
     "next/babel"
   ],
   "plugins": [
+    //"transform-decorators-legacy",
+    //["@babel/plugin-proposal-decorators", { "legacy": true }],
     [
       "import",
       {

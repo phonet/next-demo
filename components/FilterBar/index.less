@@ -12,8 +12,12 @@
 }
 
 .inputW {
-  width: 80px;
-  margin-right: 10px;
+  :global{
+    .ant-input-affix-wrapper{
+      width: 80px;
+      margin-right: 10px;
+    }
+  }
 }
 
 .searchWrap {
