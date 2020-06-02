@@ -17,8 +17,10 @@ const tailLayout = {
  */
 const LoginForm = ({
                        onFinish,
-                       onFinishFailed
+                       onFinishFailed,
+                       loading
                    }) => {
+    // onClick={() => {Router.replace('/')}}
     return (
         <div className={styles.userWrap}>
             <div className={styles.title}>密码登录</div>
@@ -49,7 +51,11 @@ const LoginForm = ({
                 <div className={`${styles.forgetPwd} tr`}>
                     <a className={styles.alink} href={'/user/forgetPassword'}>忘记密码</a>
                 </div>
-                <Button type="primary" className={`${styles.loginItem}`} htmlType="submit" onClick={() => {Router.replace('/')}}>登录</Button>
+                <Button type="primary"
+                        className={`${styles.loginItem}`}
+                        htmlType="submit"
+                        disabled={loading}
+                        loading={loading}>登录</Button>
                 <div className={styles.bottom}>
                     <a href={'/user/register'}>免费注册</a>
                 </div>
