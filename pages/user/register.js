@@ -15,10 +15,10 @@ const Register = () => {
             setLoading(true);
             const res = await registerUserApi(sendData);
             setLoading(false);
-            if (res.status === 200 && res.data.code === 20000) {
+            if (res.code === 20000) {
                 message.success('注册成功,请返回登录');
             } else {
-                message.error(`${res.data.message || '注册失败'}`)
+                message.error(`${res.message || '注册失败'}`)
             }
         } catch (e) {
             setLoading(false);

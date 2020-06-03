@@ -1,8 +1,10 @@
 import styles from './index.less';
-import React from 'react';
+import React, {useState} from 'react';
 import {Dropdown, Menu} from "antd";
 import DownOutlined from "@ant-design/icons/lib/icons/DownOutlined";
 import CollectionGoods from "../../pages/collectionGoods";
+import Link from "next/link";
+import {getLoginStorage} from "../../util/saveLogin";
 
 const menu = (
     <Menu>
@@ -34,15 +36,30 @@ const menu = (
     </Menu>
 );
 
-const Header = () => {
+const Header = ({
+                    userInfo = {}
+                }) => {
+    // const [useInfo,setUserInfo] = useState({})
+
     return (
         <div className={`${styles.header} headerHeight`}>
             <ul className={`${styles.headerInner} contentWidth`}>
                 <li>
                     <span className={styles.welcomeMsg}>跨境电商欢迎你</span>
-                    <a href={'/user/login'}>登陆</a>
-                    <span className={styles.line}>|</span>
-                    <a href={'/user/register'}>注册</a>
+                    {
+                        userInfo.id ?
+                            <span>{userInfo.firstName}</span>
+                            :
+                            <>
+                                <Link href={'/user/login'}>
+                                    <a>登陆</a>
+                                </Link>
+                                <span className={styles.line}>|</span>
+                                <Link href={'/user/register'}>
+                                    <a>注册</a>
+                                </Link>
+                            </>
+                    }
                 </li>
                 <li>
                     <a href="/myOrder" target={'_blank'} className={styles.buyItem}>我的订单</a>

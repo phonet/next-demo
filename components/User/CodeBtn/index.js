@@ -59,11 +59,11 @@ const CodeBtn = ({
             const res = await getValidateCodeApi(mobile);
             console.log(res)
             setLoading(false);
-            if (res.status === 200 && res.data.code === 20000) {
+            if (res.code === 20000) {
                 message.success('验证码发送成功');
                 setTimerCode();
             } else {
-                message.error(`${res.data.message || '验证码获取失败'}`)
+                message.error(`${res.message || '验证码获取失败'}`)
             }
         } catch (e) {
             setLoading(false);

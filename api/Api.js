@@ -14,3 +14,9 @@ export const getValidateCodeApi = async (mobile) => {
 export const registerUserApi = async (sendData) => {
     return request.get(`/services/uaa/api/user/mobile-quick-login/${sendData.username}`, {params: sendData});
 }
+
+
+//根据用户id获取用户信息
+export const getUserByIdApi = async (id) => {
+    return request.get(`/services/uaa/api/query-users/${id}`);
+}

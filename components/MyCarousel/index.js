@@ -11,7 +11,6 @@ import styles from './index.less';
 const MyCarousel = ({
                         imgHeight
                     }) => {
-    console.log(imgHeight)
     return (
         <div className={`bw`}>
             <Carousel autoplay>

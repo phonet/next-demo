@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from "react";
 import LoginForm from "../../components/User/LoginForm";
-import {login, loginApi} from "../../api/Api";
+import {getUserByIdApi, login, loginApi} from "../../api/Api";
 import {message} from "antd";
 import {saveLoginStorage, saveToken} from "../../util/saveLogin";
 import Router from "next/router";
@@ -14,19 +14,38 @@ const Login = () => {
     const loginSubmit = useCallback(async (sendData) => {
         try {
             setLoading(true);
-            const res = await loginApi(sendData);
-            setLoading(false);
-            if (res.status === 200) {
-                message.success('登录成功');
+            const res = await loginApi({...sendData, webType: 'user'});
+            // setLoading(false);
+            console.log(res)
+            if (res.code === 20000) {
+                //message.success('登录成功');
                 saveToken(res.data);
-                await Router.replace('/');
+                getUserInfo(res.data.id);
+                //await Router.replace('/');
             } else {
-                message.error('登录失败');
+                message.error(`${res.message || '登录失败'}`);
             }
         } catch (e) {
             setLoading(false);
         }
     }, [])
+
+    const getUserInfo = async (id) => {
+        try {
+            const res = await getUserByIdApi(id);
+            if (res.code === 20000) {
+                message.success('登录成功');
+                setLoading(false);
+                saveLoginStorage(res.data);
+                await Router.replace('/');
+            } else {
+                message.error(`${res.message || '登录失败'}`);
+            }
+        } catch (e) {
+            setLoading(false);
+            message.error(`用户信息登录失败`);
+        }
+    }
 
     return (
         <LoginForm onFinish={loginSubmit}
