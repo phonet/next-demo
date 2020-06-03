@@ -10,8 +10,17 @@ import TopNav from '../components/TopNav';
 import Warranty from '../components/Warranty';
 import styles from '../static/styles/index.less';
 import MyCarousel from "../components/MyCarousel";
+import request from "../util/request";
+import {getBannerByPositionApi, getCategoryApi, getGoodsRecommendApi} from "../api/Api";
 
-export default function Home() {
+export default function Home({
+                                 categoryList,
+                                 swiperList,
+                                 goodsRecommendList
+                             }) {
+    console.log(categoryList)
+    console.log(swiperList)
+    console.log(goodsRecommendList)
     return (
         <>
             <HtmlHead title={'世贸云'}/>
@@ -31,3 +40,21 @@ export default function Home() {
         </>
     );
 }
+
+
+Home.getInitialProps = async (props) => {
+    // const {isServer} = props.ctx;
+    try {
+        const res1 = await getCategoryApi(1);
+        const res2 = await getBannerByPositionApi(1);
+        const res3 = await getGoodsRecommendApi();
+        // console.log(res3)
+        return {
+            categoryList: res1,
+            swiperList: res2,
+            goodsRecommendList: res3
+        }
+    } catch (e) {
+        return {}
+    }
+};

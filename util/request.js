@@ -11,17 +11,27 @@ const request = axios.create({
 // 拦截器
 request.interceptors.response.use((response) => {
     console.log(response)
+    let resObj = {};
     if (response.data && response.data.code === 20000) {
-        return {
-            code: response.data.code,
-            data: response.data.data
+        if (process.browser) {
+            resObj = {
+                code: response.data.code,
+                data: response.data.data
+            }
+        } else { //服务端,直接返回数据
+            resObj = {...response.data.data}
+        }
+        // return  response.data.data
+    } else {
+        if (process.browser) {
+            resObj = {
+                code: response.data.code,
+                message: response.data.message,
+                data: null
+            }
         }
     }
-    return {
-        code: response.data.code,
-        message: response.data.message,
-        data: null
-    }
+    return resObj;
 }, (error) => {
     console.log(error)
     return Promise.reject(error)
@@ -30,14 +40,14 @@ request.interceptors.request.use((config) => {
     //const token = process.browser //(getToken() || {}) : serverAuthorization;
     let auth = '';
     if (process.browser) {
-        auth = getToken()['access_token']
+        auth = getToken()['access_token'] || ''
     } else {
         auth = request['access_token'] || '';
     }
     return {
         ...config,
         headers: {
-            Authorization: `Bearer ${auth}`,
+            Authorization: `${auth ? 'Bearer ' + auth : ''}`,
             Accept: 'application/json',
             'Content-Type': 'application/json; charset=utf-8',
         },

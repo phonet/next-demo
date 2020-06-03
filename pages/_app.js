@@ -24,7 +24,7 @@ class NextApp extends App {
         // console.log(request)
         let pageProps;
         if (Component.getInitialProps) {
-            pageProps = await Component.getInitialProps();
+            pageProps = await Component.getInitialProps(ctx);
         }
         return {
             pageProps,
