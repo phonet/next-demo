@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './SubCategory.less';
 import Link from "next/link";
+import {sliceArrByNum} from "../../util/Utils";
 
 /**
  * 子分类列表
@@ -8,426 +9,55 @@ import Link from "next/link";
  * @returns {*}
  * @constructor
  */
-const SubCategory = () => {
+const SubCategory = ({
+                         subCategory = []
+                     }) => {
+    const groupArr = sliceArrByNum(subCategory, 2);
     return (
         <div className={`${styles.subCateInner}`}>
             <ul className={`${styles.subCateList}`}>
-                <li className={`fcb`}>
-                    <div className={`${styles.litd}`}>
-                        <div className={styles.underTitleMiddleLine}/>
-                        <div className={`${styles.itemList}`}>
-                            <p className={styles.title}>
-                                <Link href={'/categoryGoodsList'}>
-                                    <a target="_blank" className={`${styles.cate2}`}>
-                                        洗发护发
-                                    </a>
-                                </Link>
-                            </p>
-                            <div className={`${styles.ctgnamebox}`}>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="/categoryGoodsList">
-                                    其他头发护理
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#"
-                                >
-                                    头发造型
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    美发护发工具
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    洗发皂
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    梳子
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    护发精油
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    染发剂/膏
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    洗护发套装
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    发膜
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    护发素
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="/#">
-                                    洗发水
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={`${styles.litd}`}>
-                        <div className={styles.underTitleMiddleLine}/>
-                        <div className={`${styles.itemList}`}>
-                            <p className={styles.title}>
-                                <a target="_blank" className={`${styles.cate2}`} href="#">
-                                    洗发护发
-                                </a>
-                            </p>
-                            <div className={`${styles.ctgnamebox}`}>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    其他头发护理
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#"
-                                >
-                                    头发造型
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    美发护发工具
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    洗发皂
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    梳子
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    护发精油
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    染发剂/膏
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    洗护发套装
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    发膜
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    护发素
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="/#">
-                                    洗发水
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li className={`fcb`}>
-                    <div className={`${styles.litd}`}>
-                        <div className={styles.underTitleMiddleLine}/>
-                        <div className={`${styles.itemList}`}>
-                            <p className={styles.title}>
-                                <a target="_blank" className={`${styles.cate2}`} href="#">
-                                    洗发护发
-                                </a>
-                            </p>
-                            <div className={`${styles.ctgnamebox}`}>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    其他头发护理
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#"
-                                >
-                                    头发造型
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    美发护发工具
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    洗发皂
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    梳子
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    护发精油
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    染发剂/膏
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    洗护发套装
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    发膜
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    护发素
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="/#">
-                                    洗发水
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={`${styles.litd}`}>
-                        <div className={styles.underTitleMiddleLine}/>
-                        <div className={`${styles.itemList}`}>
-                            <p className={styles.title}>
-                                <a target="_blank" className={`${styles.cate2}`} href="#">
-                                    洗发护发
-                                </a>
-                            </p>
-                            <div className={`${styles.ctgnamebox}`}>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    其他头发护理
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#"
-                                >
-                                    头发造型
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    美发护发工具
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    洗发皂
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    梳子
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    护发精油
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    染发剂/膏
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    洗护发套装
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    发膜
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    护发素
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="/#">
-                                    洗发水
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li className={`fcb`}>
-                    <div className={`${styles.litd}`}>
-                        <div className={styles.underTitleMiddleLine}/>
-                        <div className={`${styles.itemList}`}>
-                            <p className={styles.title}>
-                                <a target="_blank" className={`${styles.cate2}`} href="#">
-                                    洗发护发
-                                </a>
-                            </p>
-                            <div className={`${styles.ctgnamebox}`}>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    其他头发护理
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#"
-                                >
-                                    头发造型
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    美发护发工具
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    洗发皂
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    梳子
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    护发精油
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    染发剂/膏
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    洗护发套装
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    发膜
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    护发素
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="/#">
-                                    洗发水
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={`${styles.litd}`}>
-                        <div className={styles.underTitleMiddleLine}/>
-                        <div className={`${styles.itemList}`}>
-                            <p className={styles.title}>
-                                <a target="_blank" className={`${styles.cate2}`} href="#">
-                                    洗发护发
-                                </a>
-                            </p>
-                            <div className={`${styles.ctgnamebox}`}>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    其他头发护理
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#"
-                                >
-                                    头发造型
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    美发护发工具
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    洗发皂
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    梳子
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    护发精油
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    染发剂/膏
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    洗护发套装
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    发膜
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="#">
-                                    护发素
-                                </a>
-                                <a target="_blank"
-                                   className="f-fcred"
-                                   href="/#">
-                                    洗发水
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                {
+                    groupArr.map((o, i) => {
+                        return (
+                            <li className={`fcb`} key={i}>
+                                {
+                                    o.length > 0 &&
+                                    o.map((a, j) => {
+                                        return (
+                                            <div className={`${styles.litd}`} key={a.id}>
+                                                <div className={styles.underTitleMiddleLine}/>
+                                                <div className={`${styles.itemList}`}>
+                                                    <p className={styles.title}>
+                                                        <Link href={'/categoryGoodsList'}>
+                                                            <a target="_blank" className={`${styles.cate2}`}>
+                                                                {a.name}
+                                                            </a>
+                                                        </Link>
+                                                    </p>
+                                                    <div className={`${styles.ctgnamebox}`}>
+                                                        {
+                                                            a.childNode && a.childNode.length > 0 &&
+                                                            a.childNode.map(c => {
+                                                                return (
+                                                                    <Link href="/categoryGoodsList" key={c.id}>
+                                                                        <a target="_blank"
+                                                                           className="f-fcred">
+                                                                            {c.name}
+                                                                        </a>
+                                                                    </Link>
+                                                                )
+                                                            })
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </li>
+                        )
+                    })
+                }
             </ul>
         </div>
     );

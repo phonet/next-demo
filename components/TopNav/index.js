@@ -9,23 +9,26 @@ import styles from './index.less';
  * @constructor
  */
 const TopNav = ({
-					hoverShow = false
-				}) => {
-	return (
-		<div className={`bw`}>
-			<div className={`${styles.topTab} bw contentWidth fcb`}>
-				<Category hoverShow={hoverShow}/>
-				<ul className={`${styles.funcTab} fcb`}>
-					<li>
-						<a href="#">首页</a>
-					</li>
-					<li>
-						<a href="#">快报</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	);
+                    hoverShow = false,
+                    categoryList
+                }) => {
+    return (
+        <div className={`bw`}>
+            <div className={`${styles.topTab} bw contentWidth fcb`}>
+                <Category hoverShow={hoverShow}
+                          categoryList={categoryList}
+                />
+                <ul className={`${styles.funcTab} fcb`}>
+                    <li>
+                        <a href="#">首页</a>
+                    </li>
+                    <li>
+                        <a href="#">快报</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    );
 };
 
 export default TopNav;

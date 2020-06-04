@@ -10,26 +10,34 @@ const request = axios.create({
 
 // 拦截器
 request.interceptors.response.use((response) => {
-    console.log(response)
+    // console.log(response)
     let resObj = {};
     if (response.data && response.data.code === 20000) {
-        if (process.browser) {
+        /*if (process.browser) {
             resObj = {
                 code: response.data.code,
                 data: response.data.data
             }
         } else { //服务端,直接返回数据
             resObj = {...response.data.data}
+        }*/
+        resObj = {
+            code: response.data.code,
+            data: response.data.data
         }
-        // return  response.data.data
     } else {
-        if (process.browser) {
+        resObj = {
+            code: response.data.code,
+            message: response.data.message,
+            data: null
+        }
+        /*if (process.browser) {
             resObj = {
                 code: response.data.code,
                 message: response.data.message,
                 data: null
             }
-        }
+        }*/
     }
     return resObj;
 }, (error) => {
