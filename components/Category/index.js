@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.less';
 import SubCategory from './SubCategory.js';
-import {IMG_BASE_URL} from "../../util/ConstConfig";
+import {IMG_BASE_URL} from '../../util/ConstConfig';
 
 /**
  * 分类列表
@@ -12,6 +12,7 @@ const Category = ({
                       hoverShow = false,
                       categoryList = []
                   }) => {
+    console.log(categoryList);
     return (
         <div className={`${styles.category} ${hoverShow ? styles.hoverCategory : ''}`}>
             <div className={`${styles.topLevel}`}>
@@ -33,14 +34,14 @@ const Category = ({
                                 {
                                     o.childNode && o.childNode.length > 0 &&
                                     <>
-                                        <i className={styles.iconArrow}/>
+                                        <span className={styles.arrowWrao}> <i className={styles.iconArrow}/></span>
                                         <div className={`${styles.subCategory}`}>
                                             <SubCategory subCategory={o.childNode}/>
                                         </div>
                                     </>
                                 }
                             </li>
-                        )
+                        );
                     })
                 }
                 {/* <li className={styles.categoryItem}>

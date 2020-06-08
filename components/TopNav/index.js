@@ -1,6 +1,7 @@
 import React from 'react';
 import Category from '../Category';
 import styles from './index.less';
+import Link from 'next/link';
 
 /**
  * banner顶上的导航
@@ -10,7 +11,8 @@ import styles from './index.less';
  */
 const TopNav = ({
                     hoverShow = false,
-                    categoryList
+                    categoryList,
+                    current
                 }) => {
     return (
         <div className={`bw`}>
@@ -20,15 +22,27 @@ const TopNav = ({
                 />
                 <ul className={`${styles.funcTab} fcb`}>
                     <li>
-                        <a href="#">首页</a>
+                        <Link href="/">
+                            <a target={'_blank'}
+                               className={`${current === 'index' ? styles.active : ''}`}>
+                                首页
+                            </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">快报</a>
+                        <Link href="/article">
+                            <a target={'_blank'}
+                               className={`${current === 'article' ? styles.active : ''}`}
+                            >
+                                快报
+                            </a>
+                        </Link>
                     </li>
                 </ul>
             </div>
         </div>
     );
 };
+
 
 export default TopNav;

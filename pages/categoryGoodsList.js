@@ -6,6 +6,7 @@ import GoodsList from '../components/GoodsList/index.js';
 import HtmlHead from '../components/HtmlHead';
 import SearchArea from '../components/SearchArea';
 import TopNav from '../components/TopNav';
+import {getAllCategoryApi} from '../api/Api';
 
 /**
  * 商品列表
@@ -13,18 +14,34 @@ import TopNav from '../components/TopNav';
  * @returns {*}
  * @constructor
  */
-const CategoryGoodsList = () => {
-	return (
-		<>
-			<HtmlHead title={'商品列表'}/>
-			<SearchArea/>
-			<TopNav hoverShow={true}/>
-			<BreadcrumbNav/>
-			<BrandNav/>
-			<FilterBar/>
-			<GoodsList/>
-		</>
-	);
+const CategoryGoodsList = ({
+                               categoryList = []
+                           }) => {
+    return (
+        <>
+            <HtmlHead title={'商品列表'}/>
+            <SearchArea/>
+            <TopNav hoverShow={true}
+                    current={'index'}
+                    categoryList={categoryList}
+            />
+            <BreadcrumbNav/>
+            <BrandNav/>
+            <FilterBar/>
+            <GoodsList/>
+        </>
+    );
+};
+
+CategoryGoodsList.getInitialProps = async (props) => {
+    try {
+        const res1 = await getAllCategoryApi(); //所有分类
+        return {
+            categoryList: res1.code === 20000 ? res1.data : [],
+        };
+    } catch (e) {
+
+    }
 };
 
 export default CategoryGoodsList;

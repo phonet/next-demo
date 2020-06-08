@@ -1,9 +1,9 @@
-import React, {useCallback, useState} from "react";
-import LoginForm from "../../components/User/LoginForm";
-import {getUserByIdApi, login, loginApi} from "../../api/Api";
-import {message} from "antd";
-import {saveLoginStorage, saveToken} from "../../util/saveLogin";
-import Router from "next/router";
+import React, {useCallback, useState} from 'react';
+import LoginForm from '../../components/User/LoginForm';
+import {getUserByIdApi, login, loginApi} from '../../api/Api';
+import {message} from 'antd';
+import {saveLoginStorage, saveToken} from '../../util/saveLogin';
+import Router from 'next/router';
 
 /**
  * 登录
@@ -15,8 +15,8 @@ const Login = () => {
         try {
             setLoading(true);
             const res = await loginApi({...sendData, webType: 'user'});
-            // setLoading(false);
-            console.log(res)
+            setLoading(false);
+            console.log(res);
             if (res.code === 20000) {
                 //message.success('登录成功');
                 saveToken(res.data);
@@ -26,9 +26,10 @@ const Login = () => {
                 message.error(`${res.message || '登录失败'}`);
             }
         } catch (e) {
+            console.log(e);
             setLoading(false);
         }
-    }, [])
+    }, []);
 
     const getUserInfo = async (id) => {
         try {
@@ -45,14 +46,14 @@ const Login = () => {
             setLoading(false);
             message.error(`用户信息登录失败`);
         }
-    }
+    };
 
     return (
         <LoginForm onFinish={loginSubmit}
                    loading={loading}
         />
-    )
-}
+    );
+};
 
 
 export default Login;

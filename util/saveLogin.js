@@ -41,6 +41,10 @@ export const getToken = (ctx) => {
 
 
 export const clearLoginStorage = () => {
-    sessionStorage.removeItem(LOGIN_USER);
-    sessionStorage.removeItem(LOGIN_TOKEN);
+    if (process.browser) {
+        sessionStorage.removeItem(LOGIN_USER);
+        sessionStorage.removeItem(LOGIN_TOKEN);
+    }
+    document.cookie = `${LOGIN_USER}=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+    document.cookie = `${LOGIN_TOKEN}=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
 };

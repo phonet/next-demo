@@ -20,7 +20,7 @@ const ListItem = ({
                     {
                         testArr.map((o, i) => {
                             return (
-                                <div className={`${styles.itemInner} fcb`}>
+                                <div className={`${styles.itemInner} fcb`} key={i}>
                                     <img className={`${styles.goodsImg} fl`} src="/static/images/test/goods.jpg"
                                          alt=""/>
                                     <div className={`${styles.goodsName} black fl`}>Freeplus芙丽芳丝保湿面霜40克 保湿补水紧致滋润面霜日晚霜女男

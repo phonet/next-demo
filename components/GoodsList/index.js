@@ -9,7 +9,7 @@ import GoodsItem from "../GoodsItem";
  * @constructor
  */
 const GoodsList = () => {
-    const testArr = new Array(40).fill(1)
+    const testArr = new Array(40).fill(1);
     return (
         <div className={`${styles.listWrap} contentWidth fcb`}>
             {

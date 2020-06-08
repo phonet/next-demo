@@ -1,0 +1,69 @@
+@import '../../static/styles/common';
+
+.filterWrap {
+  height: 56px;
+  line-height: 56px;
+  background: #FFFFFF;
+  padding: 0 15px;
+  margin: 10px auto;
+}
+
+.btnGroup {
+  display: inline-block;
+  margin-right: 24px;
+}
+
+.inputW {
+  :global {
+    .ant-input-affix-wrapper {
+      width: 80px;
+      margin-right: 10px;
+    }
+  }
+}
+
+.searchWrap {
+  width: 250px;
+}
+
+.articleItem {
+  padding: 15px;
+  margin-bottom: 10px;
+
+  .itemLink {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .img {
+    width: 244px;
+    height: 150px;
+    margin-right: 10px;
+    border-radius: 4px;
+    background: #eee;
+  }
+
+  .title {
+    font-size: 18px;
+    color: #333333;
+  }
+
+  .contentWrap {
+    width: 980px;
+    padding-top: 15px;
+  }
+
+  .content {
+    font-size: 16px;
+    color: #999999;
+    margin: 10px 0;
+    height: 45px;
+    .ellipBlock(45, 2)
+  }
+
+}
+
+.bottom {
+  margin-top: 20px;
+}

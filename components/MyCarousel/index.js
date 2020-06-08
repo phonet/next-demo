@@ -1,8 +1,8 @@
 import {Carousel} from 'antd';
 import React from 'react';
 import styles from './index.less';
-import {IMG_BASE_URL} from "../../util/ConstConfig";
-import Link from "next/link";
+import {IMG_BASE_URL} from '../../util/ConstConfig';
+import Link from 'next/link';
 
 /**
  * 轮播图组件
@@ -15,19 +15,17 @@ const MyCarousel = ({
                         swiperList = []
                     }) => {
     return (
-        <div className={`bw`}>
+        <div className={`bw`} style={{height:imgHeight || 520}}>
             <Carousel autoplay>
                 {
                     swiperList.map(o => {
                         return (
-                            <Link href="/categoryGoodsList" key={o.id}>
-                                <a target={'_blank'}>
-                                    <img className={styles.carouslImg}
-                                         src={`${IMG_BASE_URL}${o.pictureUrl}`}
-                                         height={imgHeight || 520}/>
-                                </a>
-                            </Link>
-                        )
+                            <a target={'_blank'} key={o.id}>
+                                <img className={styles.carouslImg}
+                                     src={`${IMG_BASE_URL}${o.pictureUrl}`}
+                                     height={imgHeight || 520}/>
+                            </a>
+                        );
                     })
                 }
                 {/*  <img className={styles.carouslImg} src={'../static/images/test_banner.png'}

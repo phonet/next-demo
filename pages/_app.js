@@ -7,9 +7,12 @@ import UserLayout from "../components/Layout/UserLayout";
 import {getLoginStorage, getToken} from "../util/saveLogin";
 import request from "../util/request";
 import Router from 'next/router';
+// import zhCN from 'antd/es/locale/zh_CN';
+import zhCN from 'antd/lib/locale/zh_CN';
+import {ConfigProvider} from "antd";
 
 Router.events.on('routeChangeComplete', () => {
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production' && document) {
         const els = document.querySelectorAll('link[href*="/_next/static/css/styles.chunk.css"]');
         const timestamp = new Date().valueOf();
         els[0].href = '/_next/static/css/styles.chunk.css?v=' + timestamp;
@@ -47,18 +50,23 @@ class NextApp extends App {
         const {pathname} = router;
         // console.log(router)
         // console.log(pathname)
+        let LayOut = (
+            <LayoutBasic userInfo={userInfo}>
+                <Component {...pageProps} router={router}/>
+            </LayoutBasic>
+        )
         if (pathname.indexOf('/user/') === 0) { //用户登录模块
-            return (
+            LayOut = (
                 <UserLayout>
                     <Component {...pageProps} router={router}/>
                 </UserLayout>
             )
         }
         return (
-            <LayoutBasic userInfo={userInfo}>
-                <Component {...pageProps} router={router}/>
-            </LayoutBasic>
-        );
+            <ConfigProvider locale={zhCN}>
+                {LayOut}
+            </ConfigProvider>
+        )
     }
 }
 

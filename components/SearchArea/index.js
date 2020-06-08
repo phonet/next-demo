@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from '../SearchBar';
 import styles from './index.less';
+import Link from "next/link";
 
 /**
  * 搜索区域(包含搜索框和logo)
@@ -14,9 +15,11 @@ const SearchArea = ({
     return (
         <div className={`bw`}>
             <div className={`${styles.searchWrap} contentWidth`}>
-                <a className={styles.logoWrap}>
-                    <img src="../../static/images/logo.png" alt="跨境电商"/>
-                </a>
+                <Link href={'/'}>
+                    <a className={styles.logoWrap} target={'_blank'}>
+                        <img src="../../static/images/logo.png" alt="跨境电商"/>
+                    </a>
+                </Link>
                 {
                     !noSearch &&
                     <div className={styles.searchArea}>

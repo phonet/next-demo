@@ -5,35 +5,35 @@
   z-index: 102;
 
   .funcTab {
-	z-index: 72;
-	float: left;
-	padding-left: 25px;
-	height: 40px;
-	position: relative;
+    z-index: 72;
+    float: left;
+    padding-left: 25px;
+    height: 40px;
+    position: relative;
 
-	li {
-	  float: left;
-	  height: 40px;
-	  overflow: hidden;
-	  padding: 0 20px;
+    li {
+      float: left;
+      height: 40px;
+      overflow: hidden;
+      padding: 0 20px;
 
-	  a {
-		display: block;
-		text-align: center;
-		font-size: 15px;
-		font-weight: 700;
-		color: #333;
+      a {
+        display: block;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
 
-		&:link, &:visited {
-		  color: #333;
-		  text-decoration: none;
-		}
+        &:link, &:visited {
+          color: #333;
+          text-decoration: none;
+        }
 
-		&:hover {
-		  background: #fff;
-		  color: @primary-color;
-		}
-	  }
-	}
+        &:hover, &.active {
+          background: #fff;
+          color: @primary-color;
+        }
+      }
+    }
   }
 }

@@ -19,25 +19,26 @@ export default function Home({
                                  adAArea,
                                  adBArea,
                                  specialGoods,
-                                 likeGoods
+                                 superGoodsList
                              }) {
     // console.log(categoryList)
     // console.log(swiperList)
-    console.log(adAArea)
     console.log(adBArea);
     console.log(specialGoods);
-    console.log(likeGoods)
+    // console.log(superGoodsList)
     return (
         <>
             <HtmlHead title={'世贸云'}/>
             <SearchArea/>
-            <TopNav categoryList={categoryList}/>
+            <TopNav categoryList={categoryList}
+                    current={'index'}
+            />
             <MyCarousel swiperList={swiperList}/>
             <Warranty/>
             <div className={`${styles.homeContent}`}>
                 <div className={`contentWidth`}>
                     <AreaAGoods list={adAArea}/>
-                    <SuperGoods/>
+                    <SuperGoods list={superGoodsList}/>
                     <AreaBShops/>
                     <AreaCSpecial/>
                     <AreaDLike/>
@@ -51,20 +52,20 @@ export default function Home({
 Home.getInitialProps = async (props) => {
     // const {isServer} = props.ctx;
     try {
-        const res1 = await getAllCategoryApi();
-        const res2 = await getBannerByPositionApi(1);
-        const res3 = await getBannerByPositionApi(3);
-        const res4 = await getBannerByPositionApi(4);
-        const res5 = await getGoodsRecommendApi(2);
-        const res6 = await getGoodsRecommendApi(1);
+        const res1 = await getAllCategoryApi(); //所有分类
+        const res2 = await getBannerByPositionApi(1); //首页轮播图
+        const res3 = await getBannerByPositionApi(3); //A区广告
+        const res4 = await getBannerByPositionApi(4); //B区广告
+        const res5 = await getGoodsRecommendApi(2); //专区
+        const res6 = await getGoodsRecommendApi(1); //超级单品
         // console.log(res3)
         return {
             categoryList: res1.code === 20000 ? res1.data : [],
             swiperList: res2.code === 20000 ? res2.data : [],
             adAArea: res3.code === 20000 ? res3.data : [],
             adBArea: res4.code === 20000 ? res4.data : [],
-            specialGoods: res5.code === 20000 ? res5.data : [],
-            likeGoods: res6.code === 20000 ? res6.data : [],
+            specialGoods: res5.code === 20000 ? res5.data : [],//专区商品
+            superGoodsList: res6.code === 20000 ? res6.data : [],//超级单品
         }
     } catch (e) {
         return {}

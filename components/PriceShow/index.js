@@ -7,13 +7,16 @@ import styles from './index.less';
  * @returns {*}
  * @constructor
  */
-const PriceShow = () => {
-	return (
-		<div className={`fcb`}>
-			<p className={`${styles.currentPrice}`}>¥375.00</p>
-			<p className={`${styles.marketPrice}`}>市场价 ¥918.00</p>
-		</div>
-	);
+const PriceShow = ({
+                       nowPrice = 0.00,
+                       marketPrice = 999.00
+                   }) => {
+    return (
+        <div className={`fcb`}>
+            <p className={`${styles.currentPrice}`}>¥{nowPrice}</p>
+            <p className={`${styles.marketPrice}`}>市场价 ¥{marketPrice}</p>
+        </div>
+    );
 };
 
 export default PriceShow;

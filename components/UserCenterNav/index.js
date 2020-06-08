@@ -1,9 +1,10 @@
 import React from "react";
 import styles from './index.less';
+import Router from 'next/router'
 
 const NavArr = [
     {value: 'myOrder', label: '我的订单'},
-    {value: 'authentication', label: '实名认证'},
+    // {value: 'authentication', label: '实名认证'},
     {value: 'addressList', label: '收货地址'},
     {value: 'collectionGoods', label: '收藏的商品'},
     {value: 'followStore', label: '关注的店铺'},
@@ -23,7 +24,10 @@ const UserCenterNav = ({
                 NavArr.map(o => {
                     return (
                         <li className={`${router === o.value ? styles.active : ''}`} key={o.value}>
-                            <a href={`/${o.value}`}>{o.label}</a>
+                            <a onClick={() => {
+                                if (router === o.value) return;
+                                Router.push(`/userCenter/${o.value}`);
+                            }}>{o.label}</a>
                         </li>
                     )
                 })

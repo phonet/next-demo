@@ -1,0 +1,101 @@
+@import url(../../static/styles/common);
+
+.title {
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.followList {
+
+}
+
+.followItem {
+  margin-bottom: 20px;
+}
+
+.collectItem {
+  float: left;
+  width: 246px;
+  //height: 310px;
+  background: #fff;
+  margin-right: 10px;
+  margin-bottom: 15px;
+
+  &:last-child, &:nth-child(4n + 4) {
+    margin-right: 0 !important;
+  }
+}
+
+.storeNameWrap {
+  margin-bottom: 16px;
+  padding-right: 14px;
+}
+
+.storeName {
+  font-size: 16px;
+  color: #333333;
+}
+
+
+.store {
+  text-align: center;
+
+  .logo {
+    width: 82px;
+    height: 82px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(238, 238, 238, 1);
+    margin-bottom: 8px;
+  }
+}
+
+.storeGoodsList {
+  margin-left: 24px;
+
+  .goodsItem {
+    width: 240px;
+    margin-right: 15px;
+    border:1px solid rgba(238,238,238,1);
+
+    &:nth-child(4n +4) {
+      margin-right: 0;
+    }
+
+    .goodsImg {
+      width: 240px;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .goodsDesc {
+      margin-top: 10px;
+      padding: 0 10px 10px;
+    }
+
+    .goodsName {
+      color: #333333;
+      font-size: 14px;
+      .break();
+    }
+
+    .priceWrap {
+      margin-top: 5px
+    }
+
+    .nowPrice {
+      font-size: 20px;
+      color: @red;
+      font-weight: bold;
+    }
+
+    .marketPrice {
+      height: 14px;
+      margin-left: 15px;
+      font-size: 14px;
+      text-decoration: line-through;
+      color: #999999;
+    }
+
+  }
+}
