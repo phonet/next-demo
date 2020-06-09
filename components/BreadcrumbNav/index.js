@@ -1,6 +1,7 @@
 import {Breadcrumb, Menu, Select} from 'antd';
 import React from 'react';
 import styles from './index.less';
+import Link from 'next/link';
 
 /**
  * 带导航的面包屑
@@ -10,6 +11,7 @@ import styles from './index.less';
  */
 const BreadcrumbNav = ({
                            showTotal = true,
+                           categoryStr
                        }) => {
 
     const menu = (
@@ -34,7 +36,13 @@ const BreadcrumbNav = ({
 
     return (
         <div className={`${styles.navCrumbWrap} contentWidth fcb`}>
-            <Breadcrumb separator={'>'}
+            <div className={`fl`}>
+                <Link href={'/'}>
+                    <a target={'_blank'}>首页></a>
+                </Link>
+                {categoryStr}
+            </div>
+            {/* <Breadcrumb separator={'>'}
                         className={styles.left}
             >
                 <Breadcrumb.Item>
@@ -61,7 +69,7 @@ const BreadcrumbNav = ({
                         <Select.Option value="lucy11sd">面霜3</Select.Option>
                     </Select>
                 </Breadcrumb.Item>
-            </Breadcrumb>
+            </Breadcrumb>*/}
             {
                 showTotal &&
                 <div className={styles.right}>

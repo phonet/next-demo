@@ -39,9 +39,19 @@ export const getBannerByPositionApi = async (positionType) => {
     return request.get(`/services/merchants/api/c-banner-infos?positionType=${positionType}`);
 };
 
+//获取商户推荐list
+export const getStoreAdApi = async () => {
+    return request.get(`/services/merchants/api/store-recommends-list`);
+};
+
 //获取商品推荐专区广告列表goodsRecommendType:1单品推荐 2:专区广告
 export const getGoodsRecommendApi = async (goodsRecommendType) => {
     return request.get(`/services/merchants/api/c-goods-recommends?goodsRecommendType=${goodsRecommendType}`);
+};
+
+//获取专区数据
+export const getSpecialGoodsApi = async () => {
+    return request.get(`/services/merchants/api/c-goods-recommends-all`);
 };
 
 /**********order*********/
@@ -149,4 +159,16 @@ export const getBrandListByCategoryIdApi = (id) => {
 //根据分类获取商品信息
 export const getGoodsListApi = (sendData) => {
     return request.get(`/services/merchants/api/find-list-goods-by-condition-by-c`, {params: sendData});
+};
+
+
+/**********商品详情*********/
+//根据店铺id获取商品列表
+export const getStoreGoodsListApi = (sendData) => {
+    return request.get(`/services/merchants/api/goods-by-condition-by-c`, {params: sendData});
+};
+
+//获取商品详情（包括sku-属性--分类信息）
+export const getGoodsDetailApi = (id) => {
+    return request.get(`/services/merchants/api/goods/${id}`);
 };

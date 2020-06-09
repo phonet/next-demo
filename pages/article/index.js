@@ -21,7 +21,7 @@ const sendData = {
  * 2020/6/7 1:02 上午 BY TF
  */
 const Article = ({list}) => {
-    console.log(list);
+    //console.log(list);
     return (
         <>
             <HtmlHead title={'文章列表'}/>

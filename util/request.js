@@ -4,6 +4,10 @@ import Router from 'next/router';
 import {message} from 'antd';
 
 export let serverAuthorization = Object.create(null);//服务端调接口需要用户认证时的token,初始化渲染的时候给其赋值的
+//不需要token的api接口列表
+const allowApiList = [
+    '/services/merchants/api/article-infos-c',
+];
 
 const request = axios.create({
     baseURL: 'http://139.9.113.127:8080',
@@ -55,11 +59,12 @@ request.interceptors.response.use((response) => {
 });
 request.interceptors.request.use((config) => {
     //const token = process.browser //(getToken() || {}) : serverAuthorization;
+   // console.log(config.url);
     let auth = '';
     if (process.browser) {
         auth = getToken()['access_token'] || '';
     } else { // 服务端请求
-        auth = '';//request['access_token'] || '';
+        auth = request['access_token'] || '';
     }
     return {
         ...config,

@@ -1,70 +1,71 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from 'react';
 import styles from './index.less';
-import DownOutlined from "@ant-design/icons/lib/icons/DownOutlined";
-import UpOutlined from "@ant-design/icons/lib/icons/UpOutlined";
-import ImageScale from "../../../util/ImageScale";
+import DownOutlined from '@ant-design/icons/lib/icons/DownOutlined';
+import UpOutlined from '@ant-design/icons/lib/icons/UpOutlined';
+import ImageScale from '../../../util/ImageScale';
+import {getPicUrl} from '../../../util/Utils';
 
 /**
  * 商品图片预览
  * 2020/5/29 12:01 上午 BY TF
  */
-const GoodsImgPrev = () => {
-    const testThums = new Array(6).fill(1);
+const GoodsImgPrev = ({list}) => {
+    const picList = list;//new Array(6).fill(1);
     const [topPosition, setTopPosition] = useState(0);
-    const [current, setCurrent] = useState({index: 0, url: `../../../static/images/test/goods1.jpg`})
+    const [current, setCurrent] = useState({index: 0, url: getPicUrl(list[0])});
 
     const didMount = useEffect(() => {
-        ImageScale()
-    }, [])
+        ImageScale();
+    }, []);
 
     const onClickPrevBtn = useCallback((direction) => {
-        console.log(direction)
+        console.log(direction);
         const top = direction === 'up' ? topPosition + 88 : topPosition - 88;
-        console.log(top)
+        console.log(top);
         setTopPosition(top);
-    }, [topPosition])
+    }, [topPosition]);
 
-    const disabledUp = topPosition === 0 || testThums.length < 5;
-    const disabledDown = (Math.abs(topPosition) / 88) === testThums.length - 4 || testThums.length < 5;
+    const disabledUp = topPosition === 0 || picList.length < 5;
+    const disabledDown = (Math.abs(topPosition) / 88) === picList.length - 4 || picList.length < 5;
     return (
         <div className={`${styles.goodsImgPrevWrap} fl fcb`}>
             <div className={`${styles.leftListWrap} fcb`}>
                 <a className={`${styles.prevBtn} ${disabledUp ? styles.disabled : ''}`} onClick={() => {
                     if (disabledUp) {
-                        console.log('上不可点')
-                        return
+                        console.log('上不可点');
+                        return;
                     }
                     onClickPrevBtn('up');
                 }}><UpOutlined/></a>
                 <div className={styles.thumListWrap}>
                     <ul className={styles.thumListInner} style={{top: topPosition}}>
                         {
-                            testThums.map((o, i) => {
+                            picList.map((o, i) => {
                                 return (
                                     <li className={`${styles.item} ${current.index === i ? styles.active : ''}`}
                                         key={i}
                                         onMouseEnter={() => {
                                             setCurrent({
                                                 index: i,
-                                                url: `../../../static/images/test/goods${i + 1}.jpg`
+                                                url: getPicUrl(o)
                                             });
                                         }}
                                     >
                                         <a className={styles.alink}>
                                             <img className={`${styles.thumImg}`}
-                                                 src={`../../../static/images/test/goods${i + 1}.jpg`}
+                                                 src={getPicUrl(o)}
                                                  alt=""/>
                                         </a>
                                     </li>
-                                )
+                                );
                             })
                         }
                     </ul>
                 </div>
                 <a className={`${styles.prevBtn} ${disabledDown ? styles.disabled : ''}`} onClick={() => {
                     if (disabledDown) {
-                        console.log('下不可点')
-                        return
+                        console.log('下不可点');
+                        return;
                     }
                     onClickPrevBtn('down');
                 }}><DownOutlined/></a>
@@ -83,8 +84,8 @@ const GoodsImgPrev = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 
 export default GoodsImgPrev;

@@ -1,6 +1,7 @@
 import React from 'react';
 import GoodsItem from '../GoodsItem';
 import styles from './index.less';
+import {getPicUrl} from '../../../util/Utils';
 
 /**
  * C区--专区
@@ -8,39 +9,51 @@ import styles from './index.less';
  * @returns {*}
  * @constructor
  */
-const AreaCSpecial = () => {
+const AreaCSpecial = ({
+                          list = {}
+                      }) => {
     const test = new Array(2).fill(1);
+    console.log(list);
+    const specialList = list.prefectureRecommend || [];
     return (
         <div className={`${styles} mb40`}>
             {
-                test.map((o, i) => {
+                specialList.map((o, i) => {
+                    const goodsRecommendDTOS = o.goodsRecommendDTOS || [];
                     return (
-                        <div className={styles.specialItem} key={i}>
-                            <h1 className={styles.title}>{i === 0 ? '美妆专区' : '母婴专区'}</h1>
+                        <div className={styles.specialItem} key={o.id}>
+                            <h1 className={styles.title}>{o.divisionName}</h1>
                             <ul className={`${styles.specialList} fcb`}>
                                 <li className={styles.item}>
                                     <a href="/goodsDetail" target={'_blank'}>
-                                        <img src="../../../static/images/test/speical1.png" alt="美妆专区"/>
+                                        <img src={getPicUrl(o.positionOne && o.positionOne.pictureUrl)} alt="美妆专区"/>
                                     </a>
                                 </li>
-                                <li className={styles.item}>
-                                    <a  href="/goodsDetail" target={'_blank'} className={styles.topA}>
-                                        <img src="../../../static/images/test/speical3.png" alt=""/>
-                                    </a>
+                                <li className={`${styles.item}`}>
+                                    <div className={`fcb`}>
+                                        <a href="/goodsDetail" target={'_blank'} className={`${styles.topA} fl`}>
+                                            <img src={getPicUrl(o.positionOne && o.positionTwo.pictureUrl)} alt=""/>
+                                        </a>
+                                        <a href="/goodsDetail" target={'_blank'} className={`${styles.topA} fl`}>
+                                            <img src={getPicUrl(o.positionOne && o.positionThree.pictureUrl)} alt=""/>
+                                        </a>
+                                    </div>
+                                    <div className={`fcb`}>
+                                        {
+                                            goodsRecommendDTOS.map(a => {
+                                                return (
+                                                    <GoodsItem data={a} key={a.id}/>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                </li>
+                                {/* <li className={styles.item}>
                                     <div className={`fcb`}>
                                         <GoodsItem/>
                                         <GoodsItem/>
                                     </div>
-                                </li>
-                                <li className={styles.item}>
-                                    <a  href="/goodsDetail" target={'_blank'} className={styles.topA}>
-                                        <img src="../../../static/images/test/speical3.png" alt=""/>
-                                    </a>
-                                    <div className={`fcb`}>
-                                        <GoodsItem/>
-                                        <GoodsItem/>
-                                    </div>
-                                </li>
+                                </li>*/}
                             </ul>
                         </div>
                     );

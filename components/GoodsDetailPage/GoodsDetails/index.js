@@ -1,12 +1,14 @@
-import React from "react";
+import React from 'react';
 import styles from './index.less';
-import ShoppingCartOutlined from "@ant-design/icons/lib/icons/ShoppingCartOutlined";
+import ShoppingCartOutlined from '@ant-design/icons/lib/icons/ShoppingCartOutlined';
 
 /**
  * 商品详情
  * 2020/5/31 2:41 上午 BY TF
  */
-const GoodsDetails = () => {
+const GoodsDetails = ({
+                          details = null
+                      }) => {
     return (
         <div className={`${styles.goodsDetailsWrap} contentWidth fcb`}>
             <div className={`${styles.otherRecommond} fl`}>
@@ -54,11 +56,11 @@ const GoodsDetails = () => {
                 </div>
             </div>
             <div className={`${styles.detailContent}`}>
-
+                <div dangerouslySetInnerHTML={{__html: details}}/>
             </div>
         </div>
-    )
-}
+    );
+};
 
 
 export default GoodsDetails;
