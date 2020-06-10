@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {Input, Radio} from 'antd';
 import styles from './index.less';
 import PlusOutlined from '@ant-design/icons/lib/icons/PlusOutlined';
@@ -15,7 +15,42 @@ const GoodsInfo = ({
                    }) => {
     const goodsSkuDTOS = data.goodsSkuDTOS || [];
     const goodsPropertyDTOS = data.goodsPropertyDTOS || [];
+    console.log(data);
+    const [currentChose, setCurrentChose] = useState({});
+    useEffect(() => {
+        let tempObj = {};
+        tempObj = {
+            ...data,
+            currentBuy: {
+                currentSku: goodsSkuDTOS.length > 0 ? goodsSkuDTOS[0] : {},
+                currentProps: goodsPropertyDTOS.length > 0 ? goodsPropertyDTOS.map(o => ({
+                    ...o,
+                    currentPropsTags: o.goodsPropertyTagDTOS.length > 0 ? o.goodsPropertyTagDTOS[0] : {}
+                })) : {},
+                buyNums: 1
+            }
+        };
+        console.log(tempObj);
+        setCurrentChose(tempObj);
+    }, []);
 
+
+    const onChangeBuyNums = (val) => {
+        const temp = {
+            ...currentChose,
+            currentBuy: {
+                ...currentChose.currentBuy,
+                buyNums: val
+            }
+        };
+        setCurrentChose(temp);
+    };
+
+
+    const currentBuy = currentChose.currentBuy || {};
+    const currentSku = currentBuy.currentSku || {};
+    const currentProps = currentBuy.currentProps || [];
+    const buyNums = currentBuy.buyNums || 1;
     return (
         <div className={`${styles.goodsInfoWrap} fl`}>
             <h1 className={styles.goodsName}>{data.goodsName}</h1>
@@ -48,7 +83,22 @@ const GoodsInfo = ({
                                 {
                                     goodsSkuDTOS.map(o => {
                                         return (
-                                            <li><a className={styles.skuName}>{o.name}（{o.weight}+{o.volume}）</a></li>
+                                            <li key={o.id}
+                                                onClick={() => {
+                                                    const temp = {
+                                                        ...currentChose,
+                                                        currentBuy: {
+                                                            ...currentChose.currentBuy,
+                                                            currentSku: o,
+                                                            buyNums: 1
+                                                        }
+                                                    };
+                                                    // console.log(temp);
+                                                    setCurrentChose(temp);
+                                                }}
+                                            >
+                                                <a className={`${styles.skuName} ${o.id === currentSku.id ? styles.active : ''}`}>{o.name}（{o.weight}+{o.volume}）</a>
+                                            </li>
                                         );
                                     })
                                 }
@@ -57,34 +107,51 @@ const GoodsInfo = ({
                         : null
                 }
             </div>
-            <div className={`${styles.colorWrap} fcb`}>
+            <div className={styles.minGap}>
                 {
                     goodsPropertyDTOS.length ?
-                        <>
-                            {
-                                goodsPropertyDTOS.map(o => {
-                                    const goodsPropertyTagDTOS = o.goodsPropertyTagDTOS || [];
-                                    return (
-                                        <Fragment key={o.id}>
-                                            <span className={`${styles.title} fl`}>{o.name}</span>
-                                            <div className={`fl`}>
-                                                <Radio.Group size={'small'} buttonStyle="solid">
-                                                    {
-                                                        goodsPropertyTagDTOS.map(a => {
-                                                            return (
-                                                                <Radio.Button value={a.id}
-                                                                              key={a.id}>{a.name}</Radio.Button>
-                                                        )
-                                                        })
-                                                    }
+                        goodsPropertyDTOS.map((o, i) => {
+                            const goodsPropertyTagDTOS = o.goodsPropertyTagDTOS || [];
+                            const currentTag = currentProps.length && currentProps[i]['currentPropsTags'] || {};
+                            return (
+                                <div className={`${styles.colorWrap} fcb`} key={o.id}>
+                                    <Fragment key={o.id}>
+                                        <span className={`${styles.title} fl`}>{o.name}</span>
+                                        <div className={`fl`}>
+                                            <Radio.Group size={'small'}
+                                                         buttonStyle="solid"
+                                                         value={currentTag.id}
+                                            >
+                                                {
+                                                    goodsPropertyTagDTOS.map(a => {
+                                                        return (
+                                                            <Radio.Button value={a.id}
+                                                                          key={a.id}
+                                                                          onClick={() => {
+                                                                              currentProps[i]['currentPropsTags'] = a;
+                                                                              const temp = {
+                                                                                  ...currentChose,
+                                                                                  currentBuy: {
+                                                                                      ...currentChose.currentBuy,
+                                                                                      currentProps: currentProps,
+                                                                                      buyNums: 1
+                                                                                  }
+                                                                              };
+                                                                              setCurrentChose(temp);
+                                                                          }}
+                                                            >
+                                                                {a.name}
+                                                            </Radio.Button>
+                                                        );
+                                                    })
+                                                }
 
-                                                </Radio.Group>
-                                            </div>
-                                        </Fragment>
-                                    );
-                                })
-                            }
-                        </>
+                                            </Radio.Group>
+                                        </div>
+                                    </Fragment>
+                                </div>
+                            );
+                        })
                         :
                         null
                 }
@@ -92,12 +159,16 @@ const GoodsInfo = ({
             <div className={`${styles.buyNum} fcb`}>
                 <span className={`${styles.title} fl`}>数量</span>
                 <div className={`fl`}>
-                    <InputBuyNumber/>
+                    <InputBuyNumber value={buyNums}
+                                    onChange={val => onChangeBuyNums(val)}
+                                    onAddHandle={val => onChangeBuyNums(val)}
+                                    onCuteHandle={val => onChangeBuyNums(val)}
+                    />
                 </div>
             </div>
             <div className={styles.buyBtnWrap}>
-                <a className={`${styles.buyBtn} ${styles.buyNow}`}>立即购买</a>
-                <a className={`${styles.buyBtn} ${styles.addCar}`} href={'/car'} target={'_blank'}>加入购物车</a>
+                <span className={`${styles.buyBtn} ${styles.buyNow}`}>立即购买</span>
+                <span className={`${styles.buyBtn} ${styles.addCar}`} href={'/car'} target={'_blank'}>加入购物车</span>
             </div>
         </div>
     );

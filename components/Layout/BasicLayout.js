@@ -1,17 +1,17 @@
 import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
-import styles from './BasicLayout.less'
-import {getLoginStorage} from "../../util/saveLogin";
+import styles from './BasicLayout.less';
+import {getLoginStorage} from '../../util/saveLogin';
 
 const LayoutBasic = ({
                          children,
-                         userInfo
+                         // userInfo
                      }) => {
     //const userInfo = getLoginStorage() || {}
     return (
         <>
-            <Header userInfo={userInfo}/>
+            <Header/>
             <div id={'mainBody'} className={styles.main}>
                 {children}
             </div>

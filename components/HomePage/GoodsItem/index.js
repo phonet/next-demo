@@ -16,7 +16,6 @@ const GoodsItem = ({
                        data = {}
                    }) => {
     //const tempStyle = myStyle ? {marginRight: rightGap, ...myStyle} : {marginRight: rightGap};
-    console.log(data);
     const goodsDTO = data.goodsDTO || {};
     return (
         <Link href={`/goodsDetail?storeId=${goodsDTO.storeId}&goodsId=${goodsDTO.id}`}>

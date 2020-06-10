@@ -12,7 +12,6 @@ const Category = ({
                       hoverShow = false,
                       categoryList = []
                   }) => {
-    console.log(categoryList);
     return (
         <div className={`${styles.category} ${hoverShow ? styles.hoverCategory : ''}`}>
             <div className={`${styles.topLevel}`}>

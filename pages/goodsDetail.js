@@ -31,7 +31,9 @@ const GoodsDetail = ({
                     <GoodsImgPrev list={goodsDetail.goodsPic || []}/>
                     <GoodsInfo data={goodsDetail}/>
                 </div>
-                <GoodsDetails details={goodsDetail.goodsDetails}/>
+                <GoodsDetails goodsDetail={goodsDetail}
+                              storeGoods={storeGoods}
+                />
             </div>
         </>
     );
@@ -52,7 +54,7 @@ GoodsDetail.getInitialProps = async (props) => {
     }
     return {
         goodsDetail: goodsDetail.code === 20000 && goodsDetail.data || {},
-        storeGoods: storeGoods.code === 20000 && storeGoods.data || {}
+        storeGoods: storeGoods.code === 20000 && storeGoods.data || []
     };
 
 };

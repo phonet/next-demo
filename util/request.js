@@ -11,7 +11,7 @@ const allowApiList = [
 
 const request = axios.create({
     baseURL: 'http://139.9.113.127:8080',
-    timeout: 10000,
+    timeout: 30000,
 });
 
 // 拦截器

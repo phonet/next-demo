@@ -27,7 +27,7 @@ class NextApp extends App {
 
     //服务端渲染调用的方法
     static async getInitialProps({Component = {}, ctx}) {
-        const userInfo = getLoginStorage(ctx);
+        //const userInfo = getLoginStorage(ctx);
         const token = getToken(ctx) || {};
         // console.log(token)
         //serverAuthorization = {access_token: token.access_token};
@@ -40,18 +40,18 @@ class NextApp extends App {
         }
         return {
             pageProps,
-            userInfo
+            //userInfo
         };
 
     }
 
     render() {
-        const {Component, pageProps, store, router = {}, userInfo} = this.props;
+        const {Component, pageProps, store, router = {}} = this.props;
         const {pathname} = router;
         // console.log(router)
         // console.log(pathname)
         let LayOut = (
-            <LayoutBasic userInfo={userInfo}>
+            <LayoutBasic>
                 <Component {...pageProps} router={router}/>
             </LayoutBasic>
         )

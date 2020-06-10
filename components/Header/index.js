@@ -1,12 +1,12 @@
 import styles from './index.less';
-import React, {useState} from 'react';
-import {Dropdown, Menu} from "antd";
-import DownOutlined from "@ant-design/icons/lib/icons/DownOutlined";
-import CollectionGoods from "../../pages/userCenter/collectionGoods";
-import Link from "next/link";
-import {clearLoginStorage, getLoginStorage} from "../../util/saveLogin";
-import {ConfirmModal} from "../ModalAlert";
-import Router from "next/router";
+import React, {useEffect, useState} from 'react';
+import {Dropdown, Menu} from 'antd';
+import DownOutlined from '@ant-design/icons/lib/icons/DownOutlined';
+import CollectionGoods from '../../pages/userCenter/collectionGoods';
+import Link from 'next/link';
+import {clearLoginStorage, getLoginStorage} from '../../util/saveLogin';
+import {ConfirmModal} from '../ModalAlert';
+import Router from 'next/router';
 
 const menu = (
     <Menu>
@@ -39,9 +39,13 @@ const menu = (
 );
 
 const Header = ({
-                    userInfo = {}
+                    //userInfo = {}
                 }) => {
-    // const [useInfo,setUserInfo] = useState({})
+    const [userInfo, setUserInfo] = useState({});
+    useEffect(() => {
+        const tempUser = getLoginStorage();
+        setUserInfo(tempUser);
+    }, []);
 
     return (
         <div className={`${styles.header} headerHeight`}>
