@@ -34,7 +34,7 @@ export default function Home({
     //console.log(specialGoods);
     // console.log(superGoodsList)
     console.log(adBArea);
-    console.log(shopAdList);
+    // console.log(shopAdList);
     return (
         <>
             <HtmlHead title={'世贸云'}/>

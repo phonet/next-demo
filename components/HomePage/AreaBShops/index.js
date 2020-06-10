@@ -10,14 +10,14 @@ import {getPicUrl} from '../../../util/Utils';
  */
 const AreaBShops = ({
                         list,
-                        ad
+                        ad=[]
                     }) => {
     const test = new Array(4).fill(1);
     return (
         <ul className={`mb40 fcb`}>
             <li className={styles.item}>
                 <a href="">
-                    <img src="../../../static/images/global_shop.png" alt=""/>
+                    <img src={getPicUrl(ad[0]['pictureUrl'])} alt=""/>
                 </a>
             </li>
             {

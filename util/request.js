@@ -64,7 +64,7 @@ request.interceptors.request.use((config) => {
     if (process.browser) {
         auth = getToken()['access_token'] || '';
     } else { // 服务端请求
-        auth = request['access_token'] || '';
+        auth = '';//request['access_token'] || '';
     }
     return {
         ...config,
