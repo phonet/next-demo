@@ -1,0 +1,145 @@
+.successWrap {
+  background: #ffffff;
+  //height: 180px;
+  padding: 30px;
+  margin-top: 20px;
+}
+
+.titleWrap {
+  img {
+    display: inline-block;
+    float: left;
+  }
+}
+
+.tipsWrap {
+  float: left;
+  margin-left: 20px;
+
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+  }
+}
+
+.addressWrap {
+  margin-top: 15px;
+}
+
+.payTypeWrap {
+  padding: 30px;
+  background: #ffffff;
+  margin-top: 20px;
+}
+
+.payIconWrap {
+  margin: 20px 0;
+
+  .payIcon {
+    position: relative;
+    margin-right: 30px;
+    border: 1px solid #DDDDDD;
+    cursor: pointer;
+
+    &.active {
+      border: 2px solid @primary-color;
+
+      &:after {
+        content: '';
+        position: absolute;
+        width: 19px;
+        height: 19px;
+        bottom: 0;
+        right: 0;
+        background: url("/static/images/icons/icon_active.png") no-repeat center;
+      }
+    }
+  }
+}
+
+.totalMoney {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.payScanWrap {
+  min-height: 400px;
+  padding-top: 100px;
+
+  .payImgWrap {
+    width: 250px;
+    margin: 0 auto;
+
+    .payImg {
+      position: relative;
+      width: 100%;
+      border: 2px solid #DDDDDD;
+      padding: 10px;
+      min-height: 330px;
+
+      .qrImg {
+        width: 230px;
+        height: 230px;
+      }
+
+      .payTypeTips {
+        width: 141px;
+        margin: 15px auto 0;
+
+        .iconScan {
+          width: 33px;
+          height: 33px;
+          margin-top: 5px;
+          margin-right: 10px;
+        }
+      }
+
+      .tipImg {
+        position: absolute;
+        right: -210px;
+        top: -52px;
+      }
+    }
+  }
+}
+
+.payResult {
+  background: #ffffff;
+  margin: 30px 0;
+  padding: 100px;
+
+  .payResultTop {
+    img {
+      margin-right: 20px;
+    }
+
+    span {
+      display: inline-block;
+    }
+  }
+
+  .payInfoWrap {
+    margin: 30px 0;
+  }
+
+  .btnWrap {
+    padding-top: 30px;
+
+    .btn {
+      width: 180px;
+      height: 60px;
+      font-size: 22px;
+
+      &.blue {
+        background: rgba(61, 122, 245, 1);
+        margin-right: 20px;
+      }
+
+      &.gray {
+        background: rgba(248, 248, 248, 1);
+        border: 1px solid rgba(210, 210, 210, 1);
+      }
+    }
+  }
+}

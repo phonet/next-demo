@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './index.less';
 import ShoppingCartOutlined from '@ant-design/icons/lib/icons/ShoppingCartOutlined';
+import Link from 'next/link';
+import {getPicUrl, getSkuNum} from '../../util/Utils';
 
 /**
  * 商品项展示
@@ -10,29 +12,37 @@ import ShoppingCartOutlined from '@ant-design/icons/lib/icons/ShoppingCartOutlin
  */
 const GoodsItem = ({
                        myClassName,
+                       item = {}
                    }) => {
+    const storeInfoDTO = item.storeInfoDTO || {};
+    const goodsPic = item.goodsPic || [];
+    const goodsSkuDTOS = item.goodsSkuDTOS || [];
+    const skus = getSkuNum(goodsSkuDTOS) || {};
+
     return (
-        <a href=""
-           className={`${styles.goodsItem} ${myClassName ? myClassName : ''}`}
-            //style={tempStyle}
-        >
-            <img src="../../static/images/test/goods.jpg" className={styles.goodsImg} alt=""/>
-            <div className={styles.goodsDesc}>
-                <p className={styles.goodsName}>Kiehl's 科颜氏 金盏花植物精华水金盏花植物精华</p>
-                <p className={styles.priceWrap}>
-                    <span className={styles.nowPrice}>¥519</span>
-                    <span className={styles.marketPrice}>市场价 ¥630</span>
-                </p>
-                <p className={styles.storeName}>春雨（papa recipe）海外旗舰店</p>
-                <div className={`${styles.totalSaleWrap} fcb`}>
-                    <p className={`${styles.saleTotal} fl fcb`}>
-                        销量：<span className={styles.num}>85万</span>
+        <Link href={`/goodsDetail?storeId=${item.storeId}&goodsId=${item.id}`}>
+            <a className={`${styles.goodsItem} ${myClassName ? myClassName : ''}`}
+               target={'_blank'}
+                //style={tempStyle}
+            >
+                <img src={getPicUrl(goodsPic[0])} className={styles.goodsImg} alt={item.goodsName}/>
+                <div className={styles.goodsDesc}>
+                    <p className={styles.goodsName}>{item.goodsName}</p>
+                    <p className={styles.priceWrap}>
+                        <span className={styles.nowPrice}>¥{skus.salePrice}</span>
+                        <span className={styles.marketPrice}>市场价 ¥{skus.marketPrice}</span>
                     </p>
-                    <span className={`${styles.car} fr`}><ShoppingCartOutlined
-                        style={{fontSize: 24, color: '#F33A3F'}}/></span>
+                    <p className={styles.storeName}>{storeInfoDTO.storeName}</p>
+                    <div className={`${styles.totalSaleWrap} fcb`}>
+                        <p className={`${styles.saleTotal} fl fcb`}>
+                            销量：<span className={styles.num}>{item.saleVolume}</span>
+                        </p>
+                        <span className={`${styles.car} fr`}><ShoppingCartOutlined
+                            style={{fontSize: 24, color: '#F33A3F'}}/></span>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </Link>
     );
 };
 

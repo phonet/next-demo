@@ -46,11 +46,10 @@ const GoodsDetails = ({
     const [isFollow, setIsFollow] = useState(false);
     useEffect(() => {
         const userInfo = getLoginStorage();
-        console.log(userInfo);
-        console.log(goodsDetail);
+        // console.log(userInfo);
+        // console.log(goodsDetail);
         if (userInfo.id && goodsDetail.storeId) { //用户已经登录过了,查询是否关注店铺
             const isFollow = getIsFollow(goodsDetail.storeId).then(r => {
-                console.log(r);
                 setIsFollow(r);
             });
 
@@ -65,7 +64,7 @@ const GoodsDetails = ({
                 <div className={`${styles.otherStore}`}>
                     <a className={styles.header}>{storeInfoDTO.storeName}</a>
                     <div className={styles.otherStoreOption}>
-                        <Link href={''}>
+                        <Link href={`/storeDetail?storeId=${goodsDetail.storeId}`}>
                             <a target={'_blank'} className={`${styles.go}`}>进店逛逛</a>
                         </Link>
                         <a className={`${styles.action}`}

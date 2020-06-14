@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from 'react';
 import styles from './index.less';
-import {Input} from "antd";
-import ListItem from "../ListItem";
+import {Input, Spin} from 'antd';
+import ListItem from '../ListItem';
 
 /**
  * 订单列表
@@ -9,19 +9,21 @@ import ListItem from "../ListItem";
  */
 const List = ({
                   list = [],
-                  onSearch
+                  onSearch,
+                  loading,
+                  confirmReceiveGoods
               }) => {
     const [keyWord, setKeyWord] = useState('');
     useEffect(() => {
         return () => {
             //console.log('999')
             //setKeyWord('')
-        }
-    }, [setKeyWord])
+        };
+    }, [setKeyWord]);
 
-    const testArr = new Array(10).fill(1)
+    const testArr = new Array(10).fill(1);
     return (
-        <>
+        <Spin spinning={loading}>
             <Input.Search placeholder={'输入商品名称/订单号进行查询'}
                           className={styles.searchWrap}
                           value={keyWord}
@@ -29,7 +31,7 @@ const List = ({
                               setKeyWord(e.target.value);
                           }}
                           onSearch={(val) => {
-                              onSearch && onSearch(val)
+                              onSearch && onSearch(val);
                           }}
             />
             <div className={styles.header}>
@@ -41,15 +43,21 @@ const List = ({
                 <span className={styles.action}>操作</span>
             </div>
             {
-                testArr.map((o, i) => {
-                    return (
-                        <ListItem key={i}/>
-                    )
-                })
+                list.length ?
+                    list.map((o, i) => {
+                        return (
+                            <ListItem key={o.id}
+                                      item={o}
+                                      confirmReceiveGoods={confirmReceiveGoods}
+                            />
+                        );
+                    })
+                    :
+                    <div className={`noData`}>空空如也,请尽快去下单吧~~</div>
             }
-        </>
-    )
-}
+        </Spin>
+    );
+};
 
 
 export default List;

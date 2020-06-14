@@ -32,7 +32,7 @@ export default function Home({
     // console.log(swiperList)
     //console.log(adBArea);
     //console.log(specialGoods);
-    console.log(superGoodsList)
+    console.log(superGoodsList);
     // console.log(adBArea);
     // console.log(shopAdList);
     return (

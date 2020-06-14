@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './SubCategory.less';
-import Link from "next/link";
-import {sliceArrByNum} from "../../util/Utils";
+import Link from 'next/link';
+import {sliceArrByNum} from '../../util/Utils';
 
 /**
  * 子分类列表
@@ -28,7 +28,7 @@ const SubCategory = ({
                                                 <div className={styles.underTitleMiddleLine}/>
                                                 <div className={`${styles.itemList}`}>
                                                     <p className={styles.title}>
-                                                        <Link href={'/categoryGoodsList'}>
+                                                        <Link href={`/categoryGoodsList?categoryId=${a.id}`}>
                                                             <a target="_blank" className={`${styles.cate2}`}>
                                                                 {a.name}
                                                             </a>
@@ -39,23 +39,24 @@ const SubCategory = ({
                                                             a.childNode && a.childNode.length > 0 &&
                                                             a.childNode.map(c => {
                                                                 return (
-                                                                    <Link href="/categoryGoodsList" key={c.id}>
+                                                                    <Link href={`/categoryGoodsList?categoryId=${c.id}`}
+                                                                          key={c.id}>
                                                                         <a target="_blank"
                                                                            className="f-fcred">
                                                                             {c.name}
                                                                         </a>
                                                                     </Link>
-                                                                )
+                                                                );
                                                             })
                                                         }
                                                     </div>
                                                 </div>
                                             </div>
-                                        )
+                                        );
                                     })
                                 }
                             </li>
-                        )
+                        );
                     })
                 }
             </ul>

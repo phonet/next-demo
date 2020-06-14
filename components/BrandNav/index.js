@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './index.less';
 
 /**
@@ -7,27 +7,39 @@ import styles from './index.less';
  * @returns {*}
  * @constructor
  */
-const BrandNav = () => {
-	const testArr = new Array(20).fill(1);
-	return (
-		<div className={`${styles.opertaion} contentWidth`}>
-			<div className={`${styles.brandBox} fcb`}>
-				<div className={styles.name}>品牌</div>
-				<div className={styles.rightList}>
-					{
-						testArr.map((o, i) => {
-							return (
-								<a title="美赞臣"
-								   key={i}
-								   className={styles.item}
-								   href="#">美赞臣</a>
-							);
-						})
-					}
-				</div>
-			</div>
-		</div>
-	);
+const BrandNav = ({
+                      list = [],
+                      onSearch
+                  }) => {
+    const [brandId, setBrandId] = useState('');
+    return (
+        <div className={`${styles.opertaion} contentWidth`}>
+            <div className={`${styles.brandBox} fcb`}>
+                <div className={styles.name}>品牌</div>
+                <div className={styles.rightList}>
+                    {
+                        list.length ?
+                            list.map((o, i) => {
+                                return (
+                                    <a title={o.brandName}
+                                       key={o.id}
+                                       className={`${styles.item} ${brandId === o.id ? styles.active : ''}`}
+                                       onClick={() => {
+                                           setBrandId(o.id);
+                                           onSearch && onSearch(o.id);
+                                       }}
+                                    >
+                                        {o.brandName}
+                                    </a>
+                                );
+                            })
+                            :
+                            <div className={`noData`}>暂无数据</div>
+                    }
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default BrandNav;

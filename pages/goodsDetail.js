@@ -18,7 +18,7 @@ const GoodsDetail = ({
                          storeGoods = {}
                      }) => {
     console.log(storeGoods);
-    console.log(goodsDetail);
+    // console.log(goodsDetail);
     return (
         <>
             <HtmlHead title={'商品详情'}/>
@@ -41,7 +41,6 @@ const GoodsDetail = ({
 
 
 GoodsDetail.getInitialProps = async (props) => {
-    console.log(props.query);
     const {storeId, goodsId} = props.query || {};
     let goodsDetail = {};
     let storeGoods = {};

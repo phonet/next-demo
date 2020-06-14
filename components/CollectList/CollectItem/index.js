@@ -3,6 +3,7 @@ import styles from './index.less';
 import ShoppingCartOutlined from '@ant-design/icons/lib/icons/ShoppingCartOutlined';
 import DeleteOutlined from '@ant-design/icons/lib/icons/DeleteOutlined';
 import {ConfirmModal} from '../../ModalAlert';
+import {getPicUrl, getSkuNum} from '../../../util/Utils';
 
 /**
  * 收藏项
@@ -12,22 +13,24 @@ const CollectItem = ({
                          onDelete,
                          item = {}
                      }) => {
+    const goodsSkuDTOS = item.goodsSkuDTOS || [];
+    const skus = getSkuNum(goodsSkuDTOS) || {};
     return (
         <a href=""
            className={`${styles.goodsItem}`}
             //style={tempStyle}
         >
-            <img src="../../../static/images/test/goods.jpg" className={styles.goodsImg} alt=""/>
+            <img src={getPicUrl((item.goodsPic)[0])} className={styles.goodsImg} alt=""/>
             <div className={styles.goodsDesc}>
-                <p className={styles.goodsName}>Kiehl's 科颜氏 金盏花植物精华水金盏花植物精华</p>
+                <p className={styles.goodsName}>{item.goodsName}</p>
                 <p className={styles.priceWrap}>
-                    <span className={styles.nowPrice}>¥519</span>
-                    <span className={styles.marketPrice}>市场价 ¥630</span>
+                    <span className={styles.nowPrice}>¥{skus.salePrice}</span>
+                    <span className={styles.marketPrice}>市场价 ¥{skus.marketPrice}</span>
                 </p>
                 <p className={styles.storeName}>春雨（papa recipe）海外旗舰店</p>
                 <div className={`${styles.totalSaleWrap} fcb`}>
                     <p className={`${styles.saleTotal} fl fcb`}>
-                        销量：<span className={styles.num}>85万</span>
+                        销量：<span className={styles.num}>{skus.saleVolume}</span>
                     </p>
                     <span className={`${styles.car} fr`}><ShoppingCartOutlined
                         style={{fontSize: 24, color: '#F33A3F'}}/></span>

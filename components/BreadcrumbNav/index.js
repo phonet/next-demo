@@ -11,7 +11,8 @@ import Link from 'next/link';
  */
 const BreadcrumbNav = ({
                            showTotal = true,
-                           categoryStr
+                           categoryStr,
+                           totalNum
                        }) => {
 
     const menu = (
@@ -73,7 +74,7 @@ const BreadcrumbNav = ({
             {
                 showTotal &&
                 <div className={styles.right}>
-                    共<span className={styles.totalGoods}>25555</span>个商品
+                    共<span className={styles.totalGoods}>{totalNum || 0}</span>个商品
                 </div>
             }
         </div>

@@ -15,12 +15,12 @@ const MyCarousel = ({
                         swiperList = []
                     }) => {
     return (
-        <div className={`bw`} style={{height:imgHeight || 520}}>
+        <div className={`bw`} style={{height: imgHeight || 520}}>
             <Carousel autoplay>
                 {
                     swiperList.map(o => {
                         return (
-                            <a target={'_blank'} key={o.id}>
+                            <a target={'_blank'} href={o['linkAddress']} key={o.id}>
                                 <img className={styles.carouslImg}
                                      src={`${IMG_BASE_URL}${o.pictureUrl}`}
                                      height={imgHeight || 520}/>

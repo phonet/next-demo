@@ -3,7 +3,8 @@ import React from 'react';
 import PriceShow from '../../PriceShow';
 import styles from './index.less';
 import {IMG_BASE_URL} from '../../../util/ConstConfig';
-import {getPicUrl} from '../../../util/Utils';
+import {getPicUrl, getSkuNum} from '../../../util/Utils';
+import Link from 'next/link';
 
 /**
  * 超级单品
@@ -14,7 +15,7 @@ import {getPicUrl} from '../../../util/Utils';
 const SuperGoods = ({
                         list = []
                     }) => {
-    const test = new Array(9).fill(1);
+    console.log(list);
     return (
         <div className={`${styles.superGoods} contentWidth mb40`}>
             <ul className={`${styles.superGoodsList} fcb`}>
@@ -29,24 +30,29 @@ const SuperGoods = ({
                         const goodsDTO = o.goodsDTO || {};
                         const pic = goodsDTO.goodsPic && goodsDTO.goodsPic[0];
                         const goodsSkuDTOS = goodsDTO.goodsSkuDTOS || {};
+                        const skus = getSkuNum(goodsSkuDTOS);
                         return (
                             <li className={`${styles.item}`}
                                 key={i}
                             >
-                                <a href="/goodsDetail" target={'_blank'}>
-                                    <img src={getPicUrl(pic)} alt=""
-                                         className={styles.googsImg}
-                                    />
-                                    <div className={styles.googsDesc}>
-                                        <p className={`${styles.goodsName} break`}
-                                           title={goodsDTO.goodsName}>{goodsDTO.goodsName || '未知名称'}</p>
-                                        <Progress percent={70} status="exception" showInfo={false}
-                                                  strokeColor={'#F33A3F'}
-                                                  trailColor={'#EAEAEA'}
+                                <Link href={`/goodsDetail?storeId=${goodsDTO.storeId}&goodsId=${goodsDTO.id}`}>
+                                    <a target={'_blank'}>
+                                        <img src={getPicUrl(pic)} alt=""
+                                             className={styles.googsImg}
                                         />
-                                        <PriceShow nowPrice={goodsSkuDTOS.price}/>
-                                    </div>
-                                </a>
+                                        <div className={styles.googsDesc}>
+                                            <p className={`${styles.goodsName} break`}
+                                               title={goodsDTO.goodsName}>{goodsDTO.goodsName || '未知名称'}</p>
+                                            <Progress percent={o.saleVolume} status="exception" showInfo={false}
+                                                      strokeColor={'#F33A3F'}
+                                                      trailColor={'#EAEAEA'}
+                                            />
+                                            <PriceShow nowPrice={skus.salePrice}
+                                                       marketPrice={skus.marketPrice}
+                                            />
+                                        </div>
+                                    </a>
+                                </Link>
                             </li>
                         );
                     })

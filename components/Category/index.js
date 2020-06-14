@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './index.less';
 import SubCategory from './SubCategory.js';
 import {IMG_BASE_URL} from '../../util/ConstConfig';
+import Link from 'next/link';
 
 /**
  * 分类列表
@@ -27,18 +28,23 @@ const Category = ({
                     categoryList.map(o => {
                         return (
                             <li className={styles.categoryItem} key={o.id}>
-                                {/*<i className={`${styles.categoryIcon} ${styles.categoryCos}`}/>*/}
-                                <img src={`${IMG_BASE_URL}${o.pic}`} className={`${styles.categoryIcon}`}/>
-                                <span className={styles.categoryName}>{o.name}</span>
-                                {
-                                    o.childNode && o.childNode.length > 0 &&
-                                    <>
-                                        <span className={styles.arrowWrao}> <i className={styles.iconArrow}/></span>
-                                        <div className={`${styles.subCategory}`}>
-                                            <SubCategory subCategory={o.childNode}/>
-                                        </div>
-                                    </>
-                                }
+                                <Link href={`/categoryGoodsList?categoryId=${o.id}`}>
+                                    <a target={'_blank'}>
+                                        {/*<i className={`${styles.categoryIcon} ${styles.categoryCos}`}/>*/}
+                                        <img src={`${IMG_BASE_URL}${o.pic}`} className={`${styles.categoryIcon}`}/>
+                                        <span className={styles.categoryName}>{o.name}</span>
+                                        {
+                                            o.childNode && o.childNode.length > 0 &&
+                                            <>
+                                                <span className={styles.arrowWrao}> <i
+                                                    className={styles.iconArrow}/></span>
+                                                <div className={`${styles.subCategory}`}>
+                                                    <SubCategory subCategory={o.childNode}/>
+                                                </div>
+                                            </>
+                                        }
+                                    </a>
+                                </Link>
                             </li>
                         );
                     })

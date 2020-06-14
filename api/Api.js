@@ -54,12 +54,6 @@ export const getSpecialGoodsApi = async () => {
     return request.get(`/services/merchants/api/c-goods-recommends-all`);
 };
 
-/**********order*********/
-//获取我的订单列表
-export const getOrderListApi = (sendData) => {
-    return request.get(`/services/merchants/api/my-order`, {params: sendData});
-};
-
 
 /**********用户收货地址相关*********/
 //获取地址列表
@@ -152,8 +146,8 @@ export const getArticleDetailApi = (id) => {
 
 /**********分类商品列表*********/
 //根据分类id获取品牌列表
-export const getBrandListByCategoryIdApi = (id) => {
-    return request.get(`/services/merchants/api/find-list-brand-by-condition-by-c`);
+export const getBrandListByCategoryIdApi = (sendData) => {
+    return request.get(`/services/merchants/api/find-list-brand-by-condition-by-c`, {params: sendData});
 };
 
 //根据分类获取商品信息
@@ -163,12 +157,86 @@ export const getGoodsListApi = (sendData) => {
 
 
 /**********商品详情*********/
+//获取商品详情（包括sku-属性--分类信息）
+export const getGoodsDetailApi = (id) => {
+    return request.get(`/services/merchants/api/goods/${id}`);
+};
+
+/**********购物车,订单相关*********/
+//添加商品到购物车
+export const addCarApi = (sendData) => {
+    return request.post(`/services/merchants/api/cart-item/add`, sendData);
+};
+
+//删除购物车
+export const deleteCarApi = (sendData) => {
+    return request.post(`/services/merchants/api/cart-item/delete${sendData}`);
+};
+
+//获取购物车列表
+export const getCarListApi = () => {
+    return request.get(`/services/merchants/api/cart-item/list`);
+};
+
+//修改购物车中某个商品的数量
+export const modifyCarQuantityApi = (sendData) => {
+    return request.get(`/services/merchants/api/cart-item/update/quantity`, {params: sendData});
+};
+
+//根据购物车信息生成确认单信息
+export const generateConfirmOrderApi = (sendData) => {
+    return request.post(`/services/merchants/api/generateConfirmOrder`, sendData);
+};
+
+//提交订单
+export const submitOrderApi = (sendData) => {
+    return request.post(`/services/merchants/api/generateOrder`, sendData);
+};
+
+//根据订单获取支付二维码
+export const getOrderPayQrcodeApi = (sendData) => {
+    return request.get(`/services/merchants/api/pay/qrcode/${sendData.orderId}`, {params: sendData});
+};
+
+//获取支付结果
+export const getPayResultApi = (orderId) => {
+    return request.get(`/services/merchants/api/detail-c/${orderId}`);
+};
+
+//根据orderId获取订单详情
+export const getOrderDetailApi = (orderId) => {
+    return request.get(`/services/merchants/api/detail/${orderId}`);
+};
+
+/**********order*********/
+//获取我的订单列表
+export const getOrderListApi = (sendData) => {
+    return request.get(`/services/merchants/api/my-order`, {params: sendData});
+};
+
+export const cancelOrderApi = (sendData) => {
+    return request.post(`/services/merchants/api/cancelUserOrder`, sendData);
+};
+
+
+//确认收货
+export const confirmReceiveGoodsAPi = (sendData) => {
+    return request.post(`/services/merchants/api/confirmReceiveOrder`, sendData);
+};
+
+//获取订单详情
+export const getOrderItemDetailApi = (id) => {
+    return request.get(`/services/merchants/api/order-items/${id}`);
+};
+
+/**********门店*********/
+//获取门店详情
+export const getStoreInfoApi = (id) => {
+    return request.get(`/services/merchants/api/store-infos-c/${id}`);
+};
+
 //根据店铺id获取商品列表
 export const getStoreGoodsListApi = (sendData) => {
     return request.get(`/services/merchants/api/goods-by-condition-by-c`, {params: sendData});
 };
 
-//获取商品详情（包括sku-属性--分类信息）
-export const getGoodsDetailApi = (id) => {
-    return request.get(`/services/merchants/api/goods/${id}`);
-};

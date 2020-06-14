@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import styles from './index.less';
 import {deleteFollowApi, getCollectApi, getFollowApi} from '../../api/Api';
-import {Button, message} from 'antd';
+import {Button, message, Spin} from 'antd';
 import Link from 'next/link';
 import {ConfirmModal} from '../ModalAlert';
+import {getPicUrl, getSkuNum} from '../../util/Utils';
 
 /**
  * 关注的店铺列表
@@ -38,79 +39,91 @@ const FollowStoreList = () => {
     const testGoods = new Array(4).fill(1);
 
     return (
-        <>
+        <Spin spinning={loading}>
             <div className={styles.title}>我关注的店铺 (共 {dataSource.length} 个)</div>
             <div className={styles.followList}>
                 {
-                    testArr.map((o, i) => {
-                        return (
-                            <div key={i} className={styles.followItem}>
-                                <div className={`${styles.storeNameWrap} fcb`}>
-                                    <span className={`${styles.storeName} fwb fl`}>FILA 斐乐旗舰店</span>
-                                    <a className={`${styles.storeName} fr`}>查看全部></a>
-                                </div>
-                                <div className={`fcb`}>
-                                    <div className={`${styles.store} fl`}>
-                                        <img className={styles.logo} src="/static/images/test/logo.jpg" alt=""/><br/>
-                                        <Button size={'small'}
-                                                onClick={() => {
-                                                    ConfirmModal({
-                                                        title: '提示',
-                                                        constentText: '确定取消关注此店铺吗?',
-                                                        onOk: async () => {
-                                                            let resModal = Promise.reject();
-                                                            try {
-                                                                const res = await deleteFollowApi('');
-                                                                if (res.code === 20000) {
-                                                                    message.success('取消成功');
-                                                                    getList();
-                                                                    resModal = Promise.resolve();
-                                                                } else {
-                                                                    message.error(`${res.message || '取消失败'}`);
-                                                                }
-                                                            } catch (e) {
-                                                                message.error('接口异常');
-                                                            }
-                                                            return resModal;
-                                                        }
-                                                    });
-                                                }}>
-                                            取消关注
-                                        </Button>
+                    dataSource.length ?
+                        dataSource.map((o, i) => {
+                            const goodsDTOList = o.goodsDTOList || [];
+                            return (
+                                <div key={i} className={styles.followItem}>
+                                    <div className={`${styles.storeNameWrap} fcb`}>
+                                        <span className={`${styles.storeName} fwb fl`}>{o.storeName}</span>
+                                        <a className={`${styles.storeName} fr`}>查看全部></a>
                                     </div>
-                                    <ul className={`${styles.storeGoodsList} fl fcb`}>
-                                        {
-                                            testGoods.map((a, j) => {
-                                                return (
-                                                    <li key={j} className={`${styles.goodsItem} fl`}>
-                                                        <Link href={'/'}>
-                                                            <a target={'_blank'}>
-                                                                <img src="/static/images/test/goods.jpg"
-                                                                     className={styles.goodsImg}
-                                                                     alt=""/>
-                                                                <div className={styles.goodsDesc}>
-                                                                    <p className={styles.goodsName}>Kiehl's 科颜氏
-                                                                        金盏花植物精华水金盏花植物精华</p>
-                                                                    <p className={styles.priceWrap}>
-                                                                        <span className={styles.nowPrice}>¥519</span>
-                                                                        <span
-                                                                            className={styles.marketPrice}>市场价 ¥630</span>
-                                                                    </p>
-                                                                </div>
-                                                            </a>
-                                                        </Link>
-                                                    </li>
-                                                );
-                                            })
-                                        }
-                                    </ul>
+                                    <div className={`fcb`}>
+                                        <div className={`${styles.store} fl`}>
+                                            <img className={styles.logo} src={getPicUrl(o.storeLogo)}
+                                                 alt=""/><br/>
+                                            <Button size={'small'}
+                                                    onClick={() => {
+                                                        ConfirmModal({
+                                                            title: '提示',
+                                                            constentText: '确定取消关注此店铺吗?',
+                                                            onOk: async () => {
+                                                                let resModal = Promise.reject();
+                                                                try {
+                                                                    const res = await deleteFollowApi(o.id);
+                                                                    if (res.code === 20000) {
+                                                                        message.success('取消成功');
+                                                                        getList();
+                                                                        resModal = Promise.resolve();
+                                                                    } else {
+                                                                        message.error(`${res.message || '取消失败'}`);
+                                                                    }
+                                                                } catch (e) {
+                                                                    message.error('接口异常');
+                                                                }
+                                                                return resModal;
+                                                            }
+                                                        });
+                                                    }}>
+                                                取消关注
+                                            </Button>
+                                        </div>
+                                        <ul className={`${styles.storeGoodsList} fl fcb`}>
+                                            {
+                                                goodsDTOList.length ?
+                                                    goodsDTOList.map((a, j) => {
+                                                        const goodsSkuDTOS = a.goodsSkuDTOS || [];
+                                                        const skus = getSkuNum(goodsSkuDTOS);
+                                                        return (
+                                                            <li key={j} className={`${styles.goodsItem} fl`}>
+                                                                <Link href={'/'}>
+                                                                    <a target={'_blank'}>
+                                                                        <img src={getPicUrl(a['goodsPic'][0])}
+                                                                             className={styles.goodsImg}
+                                                                             alt=""/>
+                                                                        <div className={styles.goodsDesc}>
+                                                                            <p className={styles.goodsName}>{a.goodsName}</p>
+                                                                            <p className={styles.priceWrap}>
+                                                                            <span
+                                                                                className={styles.nowPrice}>¥{skus['salePrice']}</span>
+                                                                                <span
+                                                                                    className={styles.marketPrice}>市场价 ¥{skus['marketPrice']}</span>
+                                                                            </p>
+                                                                        </div>
+                                                                    </a>
+                                                                </Link>
+                                                            </li>
+                                                        );
+                                                    })
+                                                    :
+                                                    <div className={`noData`}>
+                                                        暂无数据
+                                                    </div>
+                                            }
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    })
+                            );
+                        })
+                        :
+                        !loading && <div className={'noData'}>暂无数据</div>
                 }
             </div>
-        </>
+        </Spin>
     );
 };
 

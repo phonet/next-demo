@@ -14,6 +14,7 @@ const TopNav = ({
                     categoryList,
                     current
                 }) => {
+    // console.log(categoryList);
     return (
         <div className={`bw`}>
             <div className={`${styles.topTab} bw contentWidth fcb`}>

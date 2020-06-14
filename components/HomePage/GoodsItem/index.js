@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.less';
-import {getPicUrl} from '../../../util/Utils';
+import {getPicUrl, getSkuNum} from '../../../util/Utils';
 import Link from 'next/link';
 
 /**
@@ -17,6 +17,8 @@ const GoodsItem = ({
                    }) => {
     //const tempStyle = myStyle ? {marginRight: rightGap, ...myStyle} : {marginRight: rightGap};
     const goodsDTO = data.goodsDTO || {};
+    const goodsSkuDTOS = goodsDTO.goodsSkuDTOS || [];
+    const skus = getSkuNum(goodsSkuDTOS);
     return (
         <Link href={`/goodsDetail?storeId=${goodsDTO.storeId}&goodsId=${goodsDTO.id}`}>
             <a target={'_blank'}
@@ -28,8 +30,8 @@ const GoodsItem = ({
                 <div className={styles.goodsDesc}>
                     <p className={styles.goodsName}>{goodsDTO.goodsName}</p>
                     <p className={styles.priceWrap}>
-                        <span className={styles.nowPrice}>¥519</span>
-                        <span className={styles.marketPrice}>市场价 ¥630</span>
+                        <span className={styles.nowPrice}>¥{skus.salePrice}</span>
+                        <span className={styles.marketPrice}>市场价 ¥{skus.marketPrice}</span>
                     </p>
                 </div>
             </a>

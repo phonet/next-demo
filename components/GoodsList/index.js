@@ -1,6 +1,7 @@
 import React from 'react';
-import styles from './index.less'
-import GoodsItem from "../GoodsItem";
+import styles from './index.less';
+import GoodsItem from '../GoodsItem';
+import {Spin} from 'antd';
 
 /**
  * 商品列表
@@ -8,18 +9,28 @@ import GoodsItem from "../GoodsItem";
  * @returns {*}
  * @constructor
  */
-const GoodsList = () => {
-    const testArr = new Array(40).fill(1);
+const GoodsList = ({
+                       list = [],
+                       loading
+                   }) => {
+    // console.log(list);
     return (
-        <div className={`${styles.listWrap} contentWidth fcb`}>
-            {
-                testArr.map((o, i) => {
-                    return (
-                        <GoodsItem key={i}/>
-                    )
-                })
-            }
-        </div>
+        <Spin spinning={loading}>
+            <div className={`${styles.listWrap} contentWidth fcb`}>
+                {
+                    list.length ?
+                        list.map((o, i) => {
+                            return (
+                                <GoodsItem key={i}
+                                           item={o}
+                                />
+                            );
+                        })
+                        :
+                        <div className={`noData`}>暂无数据</div>
+                }
+            </div>
+        </Spin>
     );
 };
 

@@ -10,6 +10,10 @@
     padding: 0 15px;
   }
 
+  .leftWrap {
+    height: 90px;
+  }
+
   .itemInner {
     padding: 0 15px;
 
@@ -21,15 +25,20 @@
 
     .goodsName {
       width: 304px;
-      margin: 15px 15px 15px 0;
+      margin: 12px 15px 12px 0;
     }
 
     .size, .price, .num {
       margin: 15px 15px 15px 0;
     }
 
+    .price {
+      min-width: 40px
+    }
+
     .size {
       width: 100px;
+      height: 60px;
     }
 
     .num {
@@ -55,8 +64,29 @@
 }
 
 .action {
-  width: 126px;
-  .content{
-    width: 126px;
+  width: 144px;
+
+  .content {
+    width: 100%
   }
+
+  .btn {
+    width: 80px;
+    height: 30px;
+    border-radius: 15px;
+    color: #ffffff;
+
+    &.blue {
+      background: rgba(0, 125, 198, 1);
+    }
+
+    &.yellow {
+      background: #F4C103;
+      border: none;
+    }
+  }
+}
+
+.orderSnGap {
+  margin-left: 20px;
 }

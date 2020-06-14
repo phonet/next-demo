@@ -1,14 +1,19 @@
-import React from "react";
+import React from 'react';
 import styles from './index.less';
+import {getFormatTime, getPicUrl, phoneFormat} from '../../../util/Utils';
 
 /**
  * 物流信息
  * 2020/6/1 2:34 上午 BY TF
  */
-const Logistics = () => {
+const Logistics = ({
+                       data = {}
+                   }) => {
+
+    const productInfo = data.productInfo || [];
     return (
         <>
-            <div className={styles.wrap}>
+            {/*<div className={styles.wrap}>
                 <div className={styles.header}>
                     <span className={`black`}>物流信息</span>
                 </div>
@@ -31,62 +36,78 @@ const Logistics = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*/}
             <div className={styles.wrap}>
                 <div className={styles.header}>
                     <span className={`black`}>订单信息</span>
                 </div>
                 <div className={styles.content}>
-                    <div><span className={styles.title}>收货地址： </span> 李明芝 135****1241 四川省 成都市 郫都区 犀浦镇 犀浦校园路111号傲城</div>
-                    <div><span className={styles.title}>创建时间：</span> 4305347834631</div>
-                    <div><span className={styles.title}>订单号：</span> 4305347834631</div>
-                    <div><span className={styles.title}>支付宝交易号：</span> 4305347834631</div>
-                    <div><span className={styles.title}>支付金额：</span> 4305347834631</div>
-                    <div><span className={styles.title}>支付时间：</span> 4305347834631</div>
+                    <div><span
+                        className={styles.title}>收货地址： </span> {data.receiverName} {phoneFormat(data.receiverPhone)} {data.receiverDetailAddress}
+                    </div>
+                    <div><span className={styles.title}>创建时间：</span> {getFormatTime(data.createTime)}</div>
+                    <div><span className={styles.title}>订单号：</span> {data.orderSn}</div>
+                    <div><span
+                        className={styles.title}>{data.payType === 1 ? '支付宝' : '微信'}交易号：</span> {data.payOrderPaymentCode || '--'}
+                    </div>
+                    <div><span className={styles.title}>支付金额：</span> ￥{data.payAmount || '0.00'}</div>
+                    <div><span className={styles.title}>支付时间：</span> {getFormatTime(data.paymentTime)}</div>
                 </div>
             </div>
             <div className={styles.wrap}>
                 <div className={styles.header}>
-                    <span className={`${styles.goodsInfo} black`}>商品信息</span>
+                    <span className={styles.goodsInfo}>商品信息</span>
                     <span className={`${styles.price} black`}>单价</span>
                     <span className={`${styles.num} black`}>数量</span>
                     <span className={`${styles.money} black`}>金额(元)</span>
                 </div>
                 <div className={`${styles.content}`}>
-                    <div className={`${styles.goodsItem} fcb`}>
-                        <img className={`${styles.goodsImg} fl`} src="/static/images/test/goods.jpg" alt=""/>
-                        <div className={`${styles.goodsName} fl`}>Freeplus芙丽芳丝保湿面霜40克 保湿补水紧致滋润面 霜日晚霜女男</div>
-                        <div className={`${styles.size} gary fl`}>
-                            <span>颜色：天蓝</span><br/>
-                            <span>尺码：S</span>
-                        </div>
-                        <div className={`${styles.goodsPrice} fl`}>￥120.00</div>
-                        <div className={`${styles.goodsNum} fl`}>1</div>
-                        <div className={`${styles.goodsMoney} fl`}>￥120.00</div>
-                    </div>
-                    <div className={`${styles.goodsItem} fcb`}>
-                        <img className={`${styles.goodsImg} fl`} src="/static/images/test/goods.jpg" alt=""/>
-                        <div className={`${styles.goodsName} fl`}>Freeplus芙丽芳丝保湿面霜40克 保湿补水紧致滋润面 霜日晚霜女男</div>
-                        <div className={`${styles.size} gary fl`}>
-                            <span>颜色：天蓝</span><br/>
-                            <span>尺码：S</span>
-                        </div>
-                        <div className={`${styles.goodsPrice} fl`}>￥120.00</div>
-                        <div className={`${styles.goodsNum} fl`}>1</div>
-                        <div className={`${styles.goodsMoney} fl`}>￥120.00</div>
-                    </div>
+                    {
+                        productInfo.length ?
+                            productInfo.map((o, i) => {
+                                const goodsPic = o.goodsPic || [];
+                                const cartItemDTOS = o.cartItemDTOS || [];
+                                const currentGoods = cartItemDTOS.find(a => a.productId === o.id) || {};
+                                const productAttr = currentGoods.productAttr && JSON.parse(currentGoods.productAttr) || {};
+                                return (
+                                    <div className={`${styles.goodsItem} fcb`} key={i}>
+                                        <img className={`${styles.goodsImg} fl`} src={getPicUrl(goodsPic[0])}
+                                             alt=""/>
+                                        <div className={`${styles.goodsName} fl`}>{o.goodsName}</div>
+                                        <div className={`${styles.size} gary fl`}>
+                                            {
+                                                productAttr.map(v => {
+                                                    return (
+                                                        <p key={v.key}>{v.key}：{v.value}</p>
+                                                    );
+                                                })
+                                            }
+                                        </div>
+                                        <div className={`${styles.goodsPrice} fl`}>￥{currentGoods.price}</div>
+                                        <div className={`${styles.goodsNum} fl`}>{currentGoods.quantity}</div>
+                                        <div
+                                            className={`${styles.goodsMoney} fl`}>￥{(currentGoods.quantity || 0) * (currentGoods.price || 0)}</div>
+                                    </div>
+                                );
+                            })
+                            :
+                            <div className={'noData'}>暂无数据</div>
+                    }
                     <div className={`tr`}>
-                        <span className={`color6`}>运费：<span className={`f16 fwb black`}>￥5.00</span></span><br/>
-                        <span className={`color6`}>税费：<span className={`f16 fwb black`}>￥5.00</span></span>
+                        <span className={`color6`}>运费：<span
+                            className={`f16 fwb black`}>￥{data.freightAmount || '0.00'}</span></span><br/>
+                        <span className={`color6`}>税费：<span
+                            className={`f16 fwb black`}>￥{data.taxesFees || '0.00'}</span></span>
                     </div>
-                    <div className={`tr`}>
-                        <span className={`color6`}>合计：<span className={`f20 fwb red`}>￥245.00</span></span>
+                    <div className={`${styles.bottom} fcb`}>
+                        <span className={`fl`}>店铺：{data.storeName}</span>
+                        <span className={`color6 fr`}>合计：<span className={`f20 fwb red`}>￥{data.payAmount || '0.00'}</span></span>
                     </div>
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
 
 export default Logistics;

@@ -20,7 +20,7 @@ const AreaAGoods = ({
             {
                 A1.id &&
                 <li className={`${styles.hotItem}`} key={A1.id}>
-                    <a href="/goodsDetail" target={'_blank'}>
+                    <a href={A1['linkAddress']} target={'_blank'}>
                         <p className={styles.titleWrap}>
                             <span className={styles.title}>{A1.pictureName}</span>
                             <span className={styles.subTitle}>{A1.subPictureName}</span>
@@ -33,7 +33,7 @@ const AreaAGoods = ({
                 otherA1.map(o => {
                     return (
                         <li className={`${styles.hotItem}`} key={o.id}>
-                            <a href="/goodsDetail" target={'_blank'}>
+                            <a href={o['linkAddress']} target={'_blank'}>
                                 <p className={styles.titleWrap}>
                                     <span className={styles.title}>{o.pictureName}</span>
                                     <span className={styles.subTitle}>{o.subPictureName}</span>

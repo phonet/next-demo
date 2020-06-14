@@ -1,5 +1,6 @@
 import {IMG_BASE_URL} from './ConstConfig';
 import {get} from 'lodash';
+import moment from 'moment';
 
 /**
  * 将数组拆分成以num为一组的二维数组
@@ -47,4 +48,15 @@ export const getSkuNum = (skus) => {
         saleVolume: Math.max(...skus.map(o => o.saleVolume * 1)),//销量
         taxexAndDues: Math.min(...skus.map(o => (o.taxexAndDues * 1).toFixed(2))), //税费
     };
+};
+
+
+export const getFormatTime = (time, format = 'YYYY-MM-DD HH:mm:ss') => {
+    if (!time) return '---';
+    return moment.utc(time).local().format(format);
+    // return moment(time).utc(0).format(format);
+};
+
+export const phoneFormat = (phone) => {
+    return phone ? phone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2') : '--';
 };

@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 import styles from './index.less';
-import Router from 'next/router'
+import Router from 'next/router';
 
 const NavArr = [
     {value: 'myOrder', label: '我的订单'},
@@ -29,12 +29,12 @@ const UserCenterNav = ({
                                 Router.push(`/userCenter/${o.value}`);
                             }}>{o.label}</a>
                         </li>
-                    )
+                    );
                 })
             }
         </ul>
-    )
-}
+    );
+};
 
 
 export default UserCenterNav;

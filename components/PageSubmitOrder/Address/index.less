@@ -1,3 +1,5 @@
+@import '../../../static/styles/common';
+
 .title {
   padding: 15px 0;
   color: #333333;
@@ -17,6 +19,7 @@
     margin-bottom: 10px;
     font-size: 16px;
     color: #333333;
+    overflow: hidden;
 
     &.active {
       border: 2px solid @primary-color;
@@ -54,7 +57,9 @@
     }
 
     .address {
-      width: 250px;
+      //width: 250px;
+      min-height: 50px;
+      .ellipBlock(50, 2);
     }
   }
 

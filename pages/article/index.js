@@ -5,7 +5,7 @@ import TopNav from '../../components/TopNav';
 import styles from './index.less';
 import {Button, Input, message, Radio} from 'antd';
 import {ArrowDownOutlined, ArrowUpOutlined, SortAscendingOutlined} from '@ant-design/icons';
-import {getArticleListApi} from '../../api/Api';
+import {getAllCategoryApi, getArticleListApi} from '../../api/Api';
 import Link from 'next/link';
 import {IMG_BASE_URL} from '../../util/ConstConfig';
 import moment from 'moment';
@@ -20,7 +20,7 @@ const sendData = {
  * 文章列表
  * 2020/6/7 1:02 上午 BY TF
  */
-const Article = ({list}) => {
+const Article = ({list, categoryList}) => {
     //console.log(list);
     return (
         <>
@@ -28,6 +28,7 @@ const Article = ({list}) => {
             <SearchArea/>
             <TopNav hoverShow={true}
                     current={'article'}
+                    categoryList={categoryList}
             />
             <div className={`${styles.filterWrap} contentWidth fcb`}>
                 <div className={`fl fcb`}>
@@ -48,12 +49,12 @@ const Article = ({list}) => {
                     list.map(o => {
                         return (
                             <li className={`${styles.articleItem} bw`} key={o.id}>
-                                <Link href={'/'}>
+                                <Link href={`/article/articleDetail?id=${o.id}`}>
                                     <a target={'_blank'} className={`${styles.itemLink} fcb`}>
                                         <img className={`${styles.img} fl`} src={`${IMG_BASE_URL}${o.cover}`} alt=""/>
                                         <div className={`${styles.contentWrap} fl`}>
                                             <h2 className={styles.title}>{o.title}</h2>
-                                            <div className={styles.content}>{o.content}</div>
+                                            <div className={styles.content} dangerouslySetInnerHTML={{ __html:o.content}}/>
                                             <div className={`${styles.bottom} fcb`}>
                                                 <span
                                                     className={`fl gary f16`}>{o.updateTime ? moment(o.updateTime).format('YYYY-MM-DD') : '--'}</span>
@@ -96,8 +97,10 @@ const getList = async (sendData) => {
 
 Article.getInitialProps = async (props) => {
     const res = await getList(sendData);
+    const res1 = await getAllCategoryApi().catch(e => ({})); //所有分类
     return {
-        list: res
+        list: res,
+        categoryList: res1.code === 20000 ? res1.data : [],
     };
 };
 
