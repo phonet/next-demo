@@ -7,6 +7,7 @@ import Link from 'next/link';
 import {clearLoginStorage, getLoginStorage} from '../../util/saveLogin';
 import {ConfirmModal} from '../ModalAlert';
 import Router from 'next/router';
+import {MERCHANT_URL} from '../../util/ConstConfig';
 
 const menu = (
     <Menu>
@@ -82,9 +83,9 @@ const Header = ({
                     <a href="/userCenter/myOrder" target={'_blank'} className={styles.buyItem}>我的订单</a>
                     <a href="/car" target={'_blank'} className={styles.buyItem}>购物车</a>
                     <Dropdown overlay={menu}>
-                        <a href="" className={`${styles.buyItem}`} onClick={e => e.preventDefault()}>个人中心<DownOutlined/></a>
+                        <a className={`${styles.buyItem}`} onClick={e => e.preventDefault()}>个人中心<DownOutlined/></a>
                     </Dropdown>
-                    <a href="" className={styles.buyItem}>商家入驻</a>
+                    <a href={MERCHANT_URL} target={'_blank'} className={styles.buyItem}>商家入驻</a>
                 </li>
             </ul>
         </div>
