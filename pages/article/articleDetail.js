@@ -36,14 +36,12 @@ const ArticleDetail = ({
                                                     className={`fl gary f16`}>{detail.updateTime ? getFormatTime(detail.updateTime) : '--'}</span>
                         <div className={`fr`}>
                             <EyeOutlined style={{color: '#999', fontSize: 20, marginRight: 8}}/>
-                            <span className={`gary f16`}>1.5w</span>
+                            <span className={`gary f16`}>{detail.pageview || 0}</span>
                         </div>
                     </div>
                     <div className={styles.body}
                          dangerouslySetInnerHTML={{__html: detail.content}}
-                    >
-
-                    </div>
+                    />
                 </div>
             </div>
         </>

@@ -35,9 +35,6 @@ const FollowStoreList = () => {
         getList();
     }, [params]);
 
-    const testArr = new Array(4).fill(1);
-    const testGoods = new Array(4).fill(1);
-
     return (
         <Spin spinning={loading}>
             <div className={styles.title}>我关注的店铺 (共 {dataSource.length} 个)</div>
@@ -50,7 +47,9 @@ const FollowStoreList = () => {
                                 <div key={i} className={styles.followItem}>
                                     <div className={`${styles.storeNameWrap} fcb`}>
                                         <span className={`${styles.storeName} fwb fl`}>{o.storeName}</span>
-                                        <a className={`${styles.storeName} fr`}>查看全部></a>
+                                        <Link href={`/storeDetail?storeId=${o.id}`}>
+                                            <a target={'_blank'} className={`${styles.storeName} fr`}>查看全部></a>
+                                        </Link>
                                     </div>
                                     <div className={`fcb`}>
                                         <div className={`${styles.store} fl`}>

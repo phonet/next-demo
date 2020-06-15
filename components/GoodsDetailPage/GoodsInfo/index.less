@@ -16,6 +16,7 @@
 }
 
 .goodsPriceWrap {
+  position: relative;
   background: #f8f8f8;
   padding: 8px;
 
@@ -24,6 +25,19 @@
 
     &:last-child {
       margin-bottom: 0;
+    }
+  }
+
+  .followWrap {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+
+    .followIcon {
+      width: 15px;
+      height: 13px;
+      margin-right: 5px;
     }
   }
 }

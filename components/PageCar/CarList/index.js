@@ -2,7 +2,13 @@ import React, {Fragment, useEffect, useState} from 'react';
 import styles from './index.less';
 import {Button, Checkbox, message} from 'antd';
 import InputBuyNumber from '../../InputBuyNumber';
-import {deleteCarApi, generateConfirmOrderApi, getCarListApi, modifyCarQuantityApi} from '../../../api/Api';
+import {
+    clearCarApi,
+    deleteCarApi,
+    generateConfirmOrderApi,
+    getCarListApi,
+    modifyCarQuantityApi
+} from '../../../api/Api';
 import {getPicUrl} from '../../../util/Utils';
 import {ConfirmModal} from '../../ModalAlert';
 import Router from 'next/router';
@@ -70,7 +76,30 @@ const CarList = () => {
             <div className={`${styles.carListPage} contentWidth`}>
                 <div className={`${styles.title} fcb`}>
                     <span className={`fl`}>我的购物车 {list.length}</span>
-                    <a className={`fr`} href="">清空购物车</a>
+                    <a className={`fr`}
+                       onClick={() => {
+                           ConfirmModal({
+                               title: '提示',
+                               constentText: '确定要清空购物车吗?',
+                               onOk: async () => {
+                                   let resModal = Promise.reject();
+                                   try {
+                                       const res = await clearCarApi();
+                                       if (res.code === 20000) {
+                                           resModal = Promise.resolve();
+                                           message.success('清空成功');
+                                           getCarList();
+                                           setChoseKeys([]);
+                                       } else {
+                                           message.error(`${res.message || '清空失败'}`);
+                                       }
+                                   } catch (e) {
+                                       message.error('接口异常');
+                                   }
+                                   return resModal;
+                               }
+                           });
+                       }}>清空购物车</a>
                 </div>
                 <div className={`${styles.header} fcb`}>
                     <span className={styles.check}>
@@ -273,7 +302,33 @@ const CarList = () => {
                             全选
                         </Checkbox>
                     </div>
-                    <a className={`${styles.delAll} fl`} href="">删除选中商品</a>
+                    <a className={`${styles.delAll} fl`}
+                       onClick={() => {
+                           if (!choseKeys.length) return message.info('请先选择商品');
+                           ConfirmModal({
+                               title: '提示',
+                               constentText: '确定要删除选中的商品吗?',
+                               onOk: async () => {
+                                   let resModal = Promise.reject();
+                                   try {
+                                       const res = await deleteCarApi(`?ids=${choseKeys}`);
+                                       if (res.code === 20000) {
+                                           resModal = Promise.resolve();
+                                           message.success('删除成功');
+                                           getCarList();
+                                           // a.filter((x)=>b.every((y)=>y!=x.id))
+                                           // const temp = choseKeys;
+                                           setChoseKeys([]);
+                                       } else {
+                                           message.error(`${res.message || '删除失败'}`);
+                                       }
+                                   } catch (e) {
+                                       message.error('接口异常');
+                                   }
+                                   return resModal;
+                               }
+                           });
+                       }}>删除选中商品</a>
                     <div className={`${styles.right} fr fcb`}>
                         <p className={`${styles.choseGoods} fl`}>已选商品 <span
                             className={styles.choseRed}>{choseKeys.length}</span> 件 </p>

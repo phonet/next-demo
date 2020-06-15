@@ -28,6 +28,7 @@ const Login = () => {
         } catch (e) {
             console.log(e);
             setLoading(false);
+            message.error('接口异常');
         }
     }, []);
 

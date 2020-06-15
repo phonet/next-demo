@@ -1,7 +1,7 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import styles from './index.less';
-import {getValidateCodeApi} from "../../../api/Api";
-import {message} from "antd";
+import {getValidateCodeApi} from '../../../api/Api';
+import {message} from 'antd';
 
 
 function useInterval(callback, delay) {
@@ -24,6 +24,8 @@ function useInterval(callback, delay) {
         }
     }, [delay]);
 }
+
+let timer = null;
 
 /**
  * 获取验证码的按钮
@@ -57,39 +59,47 @@ const CodeBtn = ({
         try {
             setLoading(true);
             const res = await getValidateCodeApi(mobile);
-            console.log(res)
+            console.log(res);
             setLoading(false);
             if (res.code === 20000) {
                 message.success('验证码发送成功');
                 setTimerCode();
             } else {
-                message.error(`${res.message || '验证码获取失败'}`)
+                message.error(`${res.message || '验证码获取失败'}`);
             }
         } catch (e) {
             setLoading(false);
         }
-    }
+    };
     //定时器
     const setTimerCode = useCallback(() => {
-        const internal = setInterval(() => {
+        timer = setInterval(() => {
             setTime(time => {
                 // console.log(time)
                 if (time < 1) {
-                    clearInterval(internal);
+                    clearInterval(timer);
                     return 60;
                 }
-                return time - 1
+                return time - 1;
             });
-        }, 1000)
-    }, [])
+        }, 1000);
+    }, []);
+
+    useEffect(() => {
+        return () => {
+            timer && clearInterval(timer);
+        };
+    }, []);
 
     return (
-        <a type="primary" className={styles.codeBtn} onClick={() => {
-            if (time < 60 || loading) return;
-            getCode();
-        }}>{time < 60 ? time : '获取验证码'}</a>
-    )
-}
+        <a type="primary"
+           className={`${styles.codeBtn} ${time < 60 ? styles.disabled : ''}`}
+           onClick={() => {
+               if (time < 60 || loading) return;
+               getCode();
+           }}>{time < 60 ? time : '获取验证码'}</a>
+    );
+};
 
 
 export default CodeBtn;

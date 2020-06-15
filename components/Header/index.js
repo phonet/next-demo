@@ -62,7 +62,9 @@ const Header = ({
                                         constentText: '确定要退出吗?',
                                         onOk: () => {
                                             clearLoginStorage();
-                                            return Router.replace('/user/login');
+                                            setUserInfo({});
+                                            return Router.replace('/');
+                                            ///user/login
                                         }
                                     });
                                 }}>退出</a>

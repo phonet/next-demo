@@ -15,7 +15,7 @@ import {
     getAllCategoryApi,
     getBannerByPositionApi,
     getCategoryApi,
-    getGoodsRecommendApi, getSpecialGoodsApi,
+    getGoodsRecommendApi, getLikeGoodsApi, getSpecialGoodsApi,
     getStoreAdApi
 } from '../api/Api';
 
@@ -26,13 +26,14 @@ export default function Home({
                                  adBArea,
                                  specialGoods,
                                  superGoodsList,
-                                 shopAdList
+                                 shopAdList,
+                                 likeGoods
                              }) {
     // console.log(categoryList)
     // console.log(swiperList)
     //console.log(adBArea);
     //console.log(specialGoods);
-    console.log(superGoodsList);
+    // console.log(superGoodsList);
     // console.log(adBArea);
     // console.log(shopAdList);
     return (
@@ -52,7 +53,7 @@ export default function Home({
                                 ad={adBArea}
                     />
                     <AreaCSpecial list={specialGoods}/>
-                    <AreaDLike/>
+                    <AreaDLike list={likeGoods}/>
                 </div>
             </div>
         </>
@@ -69,33 +70,9 @@ Home.getInitialProps = async (props) => {
         const res4 = await getBannerByPositionApi(4).catch(e => ({})); //B区广告
         const res5 = await getSpecialGoodsApi().catch(e => ({})); //专区
         const res6 = await getGoodsRecommendApi(1).catch(e => ({})); //超级单品
-        const res7 = await getStoreAdApi().catch(e => ({}));
+        const res7 = await getStoreAdApi().catch(e => ({}));//获取推荐门店
+        const res8 = await getLikeGoodsApi().catch(e => ({}));//获取猜你喜欢商品
 
-        /*        const ress = await Promise.race([
-                    getAllCategoryApi().catch(e => {
-                        return e;
-                    }),
-                    getBannerByPositionApi(1).catch(e => {
-                        return e;
-                    }),
-                    getBannerByPositionApi(3).catch(e => {
-                        return e;
-                    }),
-                    getBannerByPositionApi(4).catch(e => {
-                        return e;
-                    }),
-                    getGoodsRecommendApi(2).catch(e => e),
-                    getGoodsRecommendApi(1).catch(e => e)
-                ]).then(res => {
-                    console.log(res);
-                    return {res}
-
-                });
-                console.log(ress);
-                return {ress};*/
-        // console.log(res1);
-        //console.log(res2);
-        console.log(res1);
         return {
             categoryList: res1.code === 20000 ? res1.data : [],
             swiperList: res2.code === 20000 ? res2.data : [],
@@ -103,7 +80,8 @@ Home.getInitialProps = async (props) => {
             adBArea: res4.code === 20000 ? res4.data : [],
             specialGoods: res5.code === 20000 ? res5.data : [],//专区商品
             superGoodsList: res6.code === 20000 ? res6.data : [],//超级单品
-            shopAdList: res7.code === 20000 ? res7.data : []
+            shopAdList: res7.code === 20000 ? res7.data : [],
+            likeGoods: res8.code === 20000 ? res8.data : []
         };
     } catch (e) {
         return {};

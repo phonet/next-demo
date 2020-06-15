@@ -8,27 +8,30 @@ import styles from './index.less';
  * @returns {*}
  * @constructor
  */
-const AreaDLike = () => {
+const AreaDLike = ({
+                       list = []
+                   }) => {
 
-	const test = new Array(15).fill(10);
-
-	return (
-		<div className={`fcb mb40`}>
-			<h1 className={styles.title}>猜你喜欢</h1>
-			<ul className={`fcb`}>
-				{
-					test.map((o, i) => {
-						return (
-							<GoodsItem key={i}
-									  // myStyle={{marginRight: 10, marginBottom: 10}}
-									myClassName={styles.goodsItem}
-							/>
-						);
-					})
-				}
-			</ul>
-		</div>
-	);
+    return (
+        <div className={`fcb mb40`}>
+            <h1 className={styles.title}>猜你喜欢</h1>
+            <ul className={`fcb`}>
+                {
+                    list.length ?
+                        list.map((o, i) => {
+                            return (
+                                <GoodsItem key={i}
+                                           myClassName={styles.goodsItem}
+                                           data={{...o, goodsDTO: o}}
+                                />
+                            );
+                        })
+                        :
+                        <div className={'noData'}>暂无数据</div>
+                }
+            </ul>
+        </div>
+    );
 };
 
 export default AreaDLike;

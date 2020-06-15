@@ -44,14 +44,14 @@ const PayPage = () => {
 
     const getPayResult = useCallback(async () => {
         console.log('等待支持....');
-        if (!qrcode) return;
+        // if (!qrcode) return;
         try {
             let orderId = router.query && router.query.orderId || '';
             const res = await getPayResultApi(orderId);
             if (res.code === 20000 && res.data) {
                 timer && clearInterval(timer);
                 // message.success('支付成功');
-                Router.push(`/pay/payResult?orderId=${orderId}`);
+                Router.replace(`/pay/payResult?orderId=${orderId}`);
             }
         } catch (e) {
 
@@ -63,6 +63,9 @@ const PayPage = () => {
         timer = setInterval(() => {
             getPayResult();
         }, 1000);
+        return () => {
+            timer && clearInterval(timer);
+        };
     }, []);
 
     return (

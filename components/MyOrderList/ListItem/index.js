@@ -3,6 +3,7 @@ import styles from './index.less';
 import {getFormatTime, getPicUrl} from '../../../util/Utils';
 import {Button} from 'antd';
 import {goGoodsDetails, goOrderDetail, goPayPage} from '../../../util/RouterPage';
+import Link from 'next/link';
 
 /**
  * 订单项
@@ -94,7 +95,9 @@ const ListItem = ({
                                 </>
                                 :
                                 item.status === 1 ?
-                                    <a className={`color6`}>再次购买</a>
+                                    <Link href={`/storeDetail?storeId=${productInfo[0]['storeId']}`}>
+                                        <a className={`color6`} target={'_blank'}>再次购买</a>
+                                    </Link>
                                     /*<a className={`color6`}>取消订单</a> */ :
                                     item.status === 2 ?
                                         <>
@@ -106,7 +109,10 @@ const ListItem = ({
                                         </> :
                                         item.status === 3 ? '' :
                                             item.status === 4 ?
-                                                <a className={`color6`} onClick={() => goGoodsDetails()}>再次购买</a>
+                                                <Link href={`/storeDetail?storeId=${productInfo[0]['storeId']}`}>
+                                                    <a className={`color6`} target={'_blank'}>再次购买</a>
+                                                </Link>
+                                                // <a className={`color6`} onClick={() => goGoodsDetails()}>再次购买</a>
                                                 : ''
                         }
 

@@ -15,7 +15,6 @@ import Link from 'next/link';
 const SuperGoods = ({
                         list = []
                     }) => {
-    console.log(list);
     return (
         <div className={`${styles.superGoods} contentWidth mb40`}>
             <ul className={`${styles.superGoodsList} fcb`}>

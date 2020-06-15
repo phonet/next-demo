@@ -16,6 +16,10 @@ export const registerUserApi = async (sendData) => {
     return request.get(`/services/uaa/api/user/mobile-quick-login/${sendData.username}`, {params: sendData});
 };
 
+//忘记密码
+export const forgetPwdApi = async (sendData) => {
+    return request.put(`/services/uaa/api/reset/pwd/${sendData.phone}`, {code: sendData.code, pwd: sendData.pwd});
+};
 
 //根据用户id获取用户信息
 export const getUserByIdApi = async (id) => {
@@ -52,6 +56,11 @@ export const getGoodsRecommendApi = async (goodsRecommendType) => {
 //获取专区数据
 export const getSpecialGoodsApi = async () => {
     return request.get(`/services/merchants/api/c-goods-recommends-all`);
+};
+
+//获取猜你喜欢商品
+export const getLikeGoodsApi = () => {
+    return request.get(`/services/merchants/api/goods/guess-you-like`);
 };
 
 
@@ -173,6 +182,11 @@ export const deleteCarApi = (sendData) => {
     return request.post(`/services/merchants/api/cart-item/delete${sendData}`);
 };
 
+//清空购物车
+export const clearCarApi = () => {
+    return request.post(`/services/merchants/api/cart-item/clear`);
+};
+
 //获取购物车列表
 export const getCarListApi = () => {
     return request.get(`/services/merchants/api/cart-item/list`);
@@ -240,3 +254,12 @@ export const getStoreGoodsListApi = (sendData) => {
     return request.get(`/services/merchants/api/goods-by-condition-by-c`, {params: sendData});
 };
 
+//根据商品id获取商品轮播图
+export const getStoreBannerApi = (storeId) => {
+    return request.get(`/services/merchants/api/c-banner-merchant-infos-all/${storeId}`);
+};
+
+//搜索
+export const globalSearchApi = (keyword) => {
+    return request.get(`/services/merchants/api/goods/keyword-query?keyword=${keyword}`);
+};

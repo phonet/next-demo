@@ -8,7 +8,13 @@ import GoodsDetails from '../components/GoodsDetailPage/GoodsDetails';
 import MyCarousel from '../components/MyCarousel';
 import StoreLogo from '../components/StoreDetailPage/StoreLogo';
 import StoreGoods from '../components/StoreDetailPage/StoreGoods';
-import {getAllCategoryApi, getBrandListByCategoryIdApi, getStoreGoodsListApi, getStoreInfoApi} from '../api/Api';
+import {
+    getAllCategoryApi,
+    getBrandListByCategoryIdApi,
+    getStoreBannerApi,
+    getStoreGoodsListApi,
+    getStoreInfoApi
+} from '../api/Api';
 import CategoryGoodsList from './categoryGoodsList';
 
 
@@ -18,19 +24,23 @@ import CategoryGoodsList from './categoryGoodsList';
  */
 const StoreDetail = ({
                          goodsList,
-                         storeInfo
+                         storeInfo,
+                         banners
                      }) => {
     // console.log(goodsList);
     // console.log(storeInfo);
+    console.log(banners);
     return (
         <>
             <HtmlHead title={'商户详情'}/>
             <SearchArea/>
-            <div className={`bw`}>
+            {/*<div className={`bw`}>
                 <BreadcrumbNav showTotal={false}/>
-            </div>
+            </div>*/}
             <StoreLogo data={storeInfo}/>
-            <MyCarousel imgHeight={500}/>
+            <MyCarousel imgHeight={500}
+                        swiperList={banners}
+            />
             <div className={`bw`}>
                 <StoreGoods list={goodsList}/>
             </div>
@@ -48,13 +58,16 @@ StoreDetail.getInitialProps = async (props) => {
             storeId: storeId
         }).catch(e => ({}));
         const res1 = await getStoreInfoApi(storeId).catch(e => ({}));
+        //轮播图
+        const banners = await getStoreBannerApi(storeId).catch(e => ({}));
         // const goodsList = await getGoodsList({page: 0, size: 9999, thirdCategoryId: categoryId});
         return {
             //categoryList: res1.code === 20000 ? res1.data : [],
             //allBrand: allBrand.code === 20000 ? allBrand.data : [],
             goodsList: res.code === 20000 ? res.data : [],
             storeInfo: res1.code === 20000 ? res1.data : [],
-            storeId: storeId
+            storeId: storeId,
+            banners: banners.code === 20000 ? banners.data : [],
         };
     } catch (e) {
 

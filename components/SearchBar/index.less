@@ -9,31 +9,35 @@
   border-radius: 20px;
 
   .searchIcon {
-	display: inline-block;
-	width: 18px;
-	height: 18px;
-	background: url("/static/images/search.png") no-repeat center;
-	background-size: cover;
-	margin-left: 8px;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url("/static/images/search.png") no-repeat center;
+    background-size: cover;
+    margin-left: 8px;
   }
 
   .searchInput {
-	height: 28px;
-	background: transparent;
-	font-size: 14px;
-	flex: 1;
-	margin: 0 8px;
-	border: none;
+    height: 28px;
+    background: transparent;
+    font-size: 14px;
+    flex: 1;
+    margin: 0 8px;
+    border: none;
+
+    &:focus {
+      box-shadow: none;
+    }
   }
 
   .searchBtn {
-	width: 80px;
-	height: 40px;
-	background: @primary-color;
-	border-radius: 20px;
-	font-size: 18px;
-	color: #fff;
-	text-align: center;
-	line-height: 40px;
+    width: 80px;
+    height: 40px;
+    background: @primary-color;
+    border-radius: 20px;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
   }
 }

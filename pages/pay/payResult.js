@@ -54,12 +54,13 @@ const PayResult = () => {
                         <div>支付方式：{order.payType === 1 ? '支付宝' : order.payType === 2 ? '微信支付' : '未支付'}</div>
                     </div>
                     <div className={styles.btnWrap}>
-                        <Button className={`${styles.btn} ${styles.blue}`} type={'primary'} onClick={() => {
-                            Router.push('/car');
-                        }}>返回购物车</Button>
+                        <Button className={`${styles.btn} ${styles.blue}`} type={'primary'}
+                                onClick={() => {
+                                    Router.replace('/car');
+                                }}>返回购物车</Button>
                         <Button className={`${styles.btn} ${styles.gray}`}
                                 onClick={() => {
-                                    Router.push('/orderDetail');
+                                    Router.push('/userCenter/myOrder');
                                 }}
                         >查看订单</Button>
                     </div>

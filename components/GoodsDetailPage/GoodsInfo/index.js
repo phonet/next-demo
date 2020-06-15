@@ -5,9 +5,10 @@ import PlusOutlined from '@ant-design/icons/lib/icons/PlusOutlined';
 import MinusOutlined from '@ant-design/icons/lib/icons/MinusOutlined';
 import InputBuyNumber from '../../InputBuyNumber';
 import {getSkuNum} from '../../../util/Utils';
-import {addCarApi} from '../../../api/Api';
+import {addCarApi, addCollectApi, addFollowApi, deleteCollectApi, isCollectApi} from '../../../api/Api';
 import {getLoginStorage} from '../../../util/saveLogin';
 import Router from 'next/router';
+import {ConfirmModal} from '../../ModalAlert';
 
 /**
  * 商品详情介绍
@@ -18,8 +19,23 @@ const GoodsInfo = ({
                    }) => {
     const goodsSkuDTOS = data.goodsSkuDTOS || [];
     const goodsPropertyDTOS = data.goodsPropertyDTOS || [];
-    console.log(data);
+
     const [currentChose, setCurrentChose] = useState({});
+    const [isCollection, setIsCollection] = useState(false);
+
+    const getIsCollection = async () => {
+        try {
+            const res = await isCollectApi(data.id);
+            if (res.code === 20000) {
+                setIsCollection(res.data);
+            } else {
+                message.error(`${res.messsage || '获取是否收藏报错'}`);
+            }
+        } catch (e) {
+
+        }
+    };
+
     useEffect(() => {
         let tempObj = {};
         tempObj = {
@@ -35,6 +51,8 @@ const GoodsInfo = ({
         };
         // console.log(tempObj);
         setCurrentChose(tempObj);
+        getIsCollection();
+
     }, []);
 
 
@@ -93,16 +111,54 @@ const GoodsInfo = ({
                 </p>
                 <p>
                     <span className={styles.title}>税费</span>
-                    <span>预估{currentSku.saleVolume || '0.00'}</span>
+                    <span>预估 ¥{currentSku.saleVolume || '0.00'}</span>
                 </p>
                 <p>
                     <span className={styles.title}>运费</span>
-                    <span>{/*韩国至成都*/} {data.freight || '0.00'}元</span>
+                    <span>{/*韩国至成都*/} ¥{data.freight || '0.00'}元</span>
                 </p>
                 <p>
                     <span className={styles.title}>销量</span>
                     <span>{currentSku['saleVolume']}</span>
                 </p>
+                <div className={styles.followWrap}
+                     onClick={async () => {
+                         if (!isCollection) {//未收藏
+                             try {
+                                 const res = await addCollectApi(data.id);
+                                 if (res.code === 20000) {
+                                     message.success('收藏成功');
+                                     getIsCollection();
+                                 } else {
+                                     message.error(`${res.message || '收藏失败'}`);
+                                 }
+                             } catch (e) {
+                                 message.error(`收藏接口异常`);
+                             }
+                         } else { //已收藏
+                             ConfirmModal({
+                                 title: '提示',
+                                 constentText: '确定要取消收藏吗?',
+                                 onOk: async () => {
+                                     let resModal = Promise.reject();
+                                     const res = await deleteCollectApi(data.id);
+                                     if (res.code === 20000) {
+                                         message.success('取消成功');
+                                         getIsCollection();
+                                         resModal = Promise.resolve();
+                                     } else {
+                                         message.error(`${res.message || '取消失败'}`);
+                                     }
+                                     return resModal;
+                                 }
+                             });
+                         }
+                     }}
+                >
+                    <img src={`/static/images/icons/${isCollection ? 'icon_follow.png' : 'icon_follow_un.png'}`}
+                         className={styles.followIcon} alt=""/>
+                    <span className={`black`}>{isCollection ? '已收藏' : '收藏'}</span>
+                </div>
             </div>
             <div className={`${styles.skuWrap} fcb`}>
                 {

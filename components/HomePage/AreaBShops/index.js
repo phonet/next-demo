@@ -13,8 +13,6 @@ const AreaBShops = ({
                         list,
                         ad = []
                     }) => {
-    console.log(ad);
-    console.log(list);
     return (
         <ul className={`mb40 fcb`}>
             <li className={styles.item}>

@@ -2,6 +2,7 @@ import React from 'react';
 import GoodsItem from '../GoodsItem';
 import styles from './index.less';
 import {getPicUrl} from '../../../util/Utils';
+import Link from 'next/link';
 
 /**
  * C区--专区
@@ -12,9 +13,8 @@ import {getPicUrl} from '../../../util/Utils';
 const AreaCSpecial = ({
                           list = {}
                       }) => {
-    const test = new Array(2).fill(1);
-    console.log(list);
     const specialList = list.prefectureRecommend || [];
+    // console.log(specialList);
     return (
         <div className={`${styles} mb40`}>
             {
@@ -25,25 +25,32 @@ const AreaCSpecial = ({
                             <h1 className={styles.title}>{o.divisionName}</h1>
                             <ul className={`${styles.specialList} fcb`}>
                                 <li className={styles.item}>
-                                    <a href="/goodsDetail" target={'_blank'}>
-                                        <img src={getPicUrl(o.positionOne && o.positionOne.pictureUrl)} alt="美妆专区"/>
-                                    </a>
+                                    <Link href={o.positionOne && o.positionOne['linkAddress']} prefetch={false}>
+                                        <a target={'_blank'}>
+                                            <img src={getPicUrl(o.positionOne && o.positionOne.pictureUrl)} alt="美妆专区"/>
+                                        </a>
+                                    </Link>
                                 </li>
                                 <li className={`${styles.item}`}>
                                     <div className={`fcb`}>
-                                        <a href="/goodsDetail" target={'_blank'} className={`${styles.topA} fl`}>
-                                            <img src={getPicUrl(o.positionOne && o.positionTwo.pictureUrl)} alt=""/>
-                                        </a>
-                                        <a href="/goodsDetail" target={'_blank'} className={`${styles.topA} fl`}>
-                                            <img src={getPicUrl(o.positionOne && o.positionThree.pictureUrl)} alt=""/>
-                                        </a>
+                                        <Link href={o.positionTwo && o.positionTwo['linkAddress']} prefetch={false}>
+                                            <a target={'_blank'} className={`${styles.topA} fl`}>
+                                                <img src={getPicUrl(o.positionTwo && o.positionTwo.pictureUrl)} alt=""/>
+                                            </a>
+                                        </Link>
+                                        <Link href={o.positionThree && o.positionThree['linkAddress']} prefetch={false}>
+                                            <a target={'_blank'} className={`${styles.topA} fl`}>
+                                                <img src={getPicUrl(o.positionThree && o.positionThree.pictureUrl)}
+                                                     alt=""/>
+                                            </a>
+                                        </Link>
                                     </div>
                                     <div className={`fcb`}>
                                         {
                                             goodsRecommendDTOS.map(a => {
                                                 return (
                                                     <GoodsItem data={a} key={a.id}/>
-                                                )
+                                                );
                                             })
                                         }
                                     </div>

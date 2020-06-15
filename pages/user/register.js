@@ -22,6 +22,7 @@ const Register = () => {
             }
         } catch (e) {
             setLoading(false);
+            message.error('接口异常');
         }
     }, [])
 
