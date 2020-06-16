@@ -38,9 +38,13 @@ const StoreDetail = ({
                 <BreadcrumbNav showTotal={false}/>
             </div>*/}
             <StoreLogo data={storeInfo}/>
-            <MyCarousel imgHeight={500}
-                        swiperList={banners}
-            />
+            {
+                banners.length ?
+                    <MyCarousel imgHeight={500}
+                                swiperList={banners}
+                    />
+                    : null
+            }
             <div className={`bw`}>
                 <StoreGoods list={goodsList}/>
             </div>

@@ -51,7 +51,10 @@ const GoodsInfo = ({
         };
         // console.log(tempObj);
         setCurrentChose(tempObj);
-        getIsCollection();
+        const userInfo = getLoginStorage();
+        if (userInfo.id && data.id) {
+            getIsCollection();
+        }
 
     }, []);
 
