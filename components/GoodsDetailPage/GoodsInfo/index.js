@@ -38,13 +38,15 @@ const GoodsInfo = ({
 
     useEffect(() => {
         let tempObj = {};
+        // console.log(goodsPropertyDTOS);
+        // console.log(o.goodsPropertyTagDsTOS);
         tempObj = {
             ...data,
             currentBuy: {
                 currentSku: goodsSkuDTOS.length > 0 ? goodsSkuDTOS[0] : {},
                 currentProps: goodsPropertyDTOS.length > 0 ? goodsPropertyDTOS.map(o => ({
                     ...o,
-                    currentPropsTags: o.goodsPropertyTagDTOS.length > 0 ? o.goodsPropertyTagDTOS[0] : {}
+                    currentPropsTags: o.goodsPropertyTagDTOS && o.goodsPropertyTagDTOS.length > 0 ? o.goodsPropertyTagDTOS[0] : {}
                 })) : {},
                 buyNums: 1
             }
