@@ -1,30 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+# 这是一个nextjs搭建的是电商项目
 
-## Getting Started
+## 运行项目关键步骤
 
-First, run the development server:
+master分支是对接了接口的分支，需要服务端配合，可能运行不起来，ui分支纯页面分支，可作为演示使用，建议要查看效果可以直接切到ui分支然后使用
 
-```bash
-npm run dev
-# or
-yarn dev NODE_OPTIONS='--inspect' 
+### 1、切换到ui分支
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+git checkout ui
+```
+### 2、安装依赖
+```
+yarn
+```
+### 3、运行项目
+```
+yarn dev
+```
+然后浏览器打开：http://localhost:3000
+### 4、打包项目
+```
+yarn build 
+```
