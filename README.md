@@ -21,3 +21,6 @@ yarn dev
 ```
 yarn build 
 ```
+
+### 5、完整使用说明
+https://juejin.im/post/6879087910487293966
